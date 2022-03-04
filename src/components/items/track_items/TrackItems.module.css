@@ -1,0 +1,94 @@
+.container{
+    background-color: #181818;
+    border-radius: 6px;
+    padding:20px;
+    display: flex;
+    flex-direction: column;
+    gap:6px;
+    width: 18%;
+    position: relative;
+}
+
+.container:hover{
+    cursor: pointer;
+    animation: changeBgColor 0.4s;
+    animation-fill-mode: forwards;
+}
+
+.img{
+    border-radius: 6px;
+}
+
+.name{
+    font-size: 16px;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.description{
+    font-size: 13px;
+}
+
+.artist:hover{
+    text-decoration: underline ;
+}
+
+.container:hover .icon {
+    display: block;
+    animation: myAnimation 0.4s;
+    animation-fill-mode: forwards;
+}
+
+.icon {
+    /*display: none;*/
+    color: #1cd760;
+    font-size: 200% !important;
+    justify-self: flex-end;
+    position: absolute;
+    right: 15%;
+    bottom: 40%;
+    transform: translateY(120%);
+    opacity: 0;
+    box-shadow: 0 2px 4px 0 black;
+    border-radius: 50%;
+}
+
+@keyframes myAnimation {
+    from {
+        transform: translateY(120%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes changeBgColor {
+    from {
+        background-color: #181818;
+    }
+    to {
+        background-color: #282828;
+    }
+}
+
+@media screen and (max-width: 1300px) {
+    .container {
+        width: 20%;
+    }
+}
+
+@media screen and (max-width: 1164px) {
+    .container {
+        width: 30%;
+    }
+}
+
+@media screen and (max-width: 770px) {
+    .container {
+        width: 46%;
+    }
+}

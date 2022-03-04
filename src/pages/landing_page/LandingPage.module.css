@@ -1,0 +1,32 @@
+.container{
+    width:100%;
+    height:100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.body{
+    flex:1;
+    flex-wrap: wrap;
+    display: flex;
+}
+
+.body_left{
+    min-width: 200px;
+    padding:10px;
+    background-color: black;
+}
+
+.body_right{
+    flex:1;
+}
+
+.body_bottom{
+    background-color: purple;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+}

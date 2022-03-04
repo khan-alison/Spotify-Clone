@@ -1,0 +1,13 @@
+.container{
+
+}
+
+.SideBarPlaylist{
+    color:grey;
+    padding: 6px 0;
+    transition:  color 0.3s ease-in;
+}
+
+.SideBarPlaylist:hover{
+    color:white
+}

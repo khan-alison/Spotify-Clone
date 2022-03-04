@@ -1,0 +1,28 @@
+.container{
+    width:100%;
+    height: 100%;
+    background-image: linear-gradient(#222221, #000000);
+    padding: 100px 30px 30px 30px;
+    position: relative;
+    top: -58px;
+    color:white;
+}
+
+.playlistItems{
+    margin-top: 34px;
+    margin-bottom: 34px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+}
+
+.recentlyTracksItems{
+    display: flex;
+    gap:26px;
+    flex-wrap: wrap;
+}
+
+.recentlyTracks{
+
+}

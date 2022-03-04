@@ -1,0 +1,36 @@
+.container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: grey;
+    height: 40px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 0 20px;
+    transition:  color 0.3s ease-in;
+    text-decoration: none;
+
+}
+
+.container >p{
+    font-size: 13px;
+    margin:0;
+}
+
+.container:hover{
+    color:white;
+}
+
+.icons {
+    margin-right: 14px;
+}
+
+@keyframes changeColor {
+    from {color:grey;}
+    to {color:white}
+}
+
+.sidebarOptions:hover {
+    color: white;
+}
