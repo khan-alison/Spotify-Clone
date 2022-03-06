@@ -2,7 +2,7 @@ import React, {useEffect, useMemo, useRef, useState} from "react";
 import style from "./Home.module.css"
 import {useDispatch, useSelector} from "react-redux";
 import {dividerClasses} from "@mui/material";
-import PlaylistItems from "../../items/playlist_items/PlaylistItems";
+import PlaylistItems from "../../items/playlist_items/home/PlaylistItems";
 import TrackItems from "../../items/track_items/TrackItems";
 import {NavLink} from "react-router-dom";
 
@@ -25,12 +25,33 @@ export default function Home() {
             return "Good evening";
         }
     }, []);
-    console.log(recentlyPlayedTracks)
     return (
         <div className={style.container}>
             <div className={style.userPlaylists}>
                 <h4>{getGreeting}</h4>
                 <div className={style.playlistItems}>
+                    {userPlaylist.map((playlist: any, ind: number) => {
+                        return (
+                            <PlaylistItems
+                                playlistId={playlist.id}
+                                playlistName={playlist.name}
+                                key={ind}
+                                imageUrl={playlist?.images[0]?.url}
+                                playlistUri={playlist.uri}
+                            />
+                        );
+                    })}
+                    {userPlaylist.map((playlist: any, ind: number) => {
+                        return (
+                            <PlaylistItems
+                                playlistId={playlist.id}
+                                playlistName={playlist.name}
+                                key={ind}
+                                imageUrl={playlist?.images[0]?.url}
+                                playlistUri={playlist.uri}
+                            />
+                        );
+                    })}
                     {userPlaylist.map((playlist: any, ind: number) => {
                         return (
                             <PlaylistItems
@@ -69,6 +90,18 @@ export default function Home() {
                                     id={""}
                                     artists={item.track.artists}
                                 />
+                        ))
+                    }
+                    {
+                        recentlyPlayedTracks.map((item:any,index:any)=>(
+                            <TrackItems
+                                key={index}
+                                imgUrl={item.track.album.images[0].url}
+                                title={item.track.name}
+                                content={""}
+                                id={""}
+                                artists={item.track.artists}
+                            />
                         ))
                     }
                 </div>

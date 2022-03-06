@@ -13,20 +13,21 @@ interface IPlaylistItems{
 
 export default function PlaylistItems(props:IPlaylistItems){
     return (
-        <NavLink
-            to={`/playlist/${props.playlistId}`}
-            style={{ textDecoration: "none", color: "white" }}
-            className={style.container}>
+        <div className={style.container}>
+            <NavLink
+                to={`/playlist/${props.playlistId}`}
+                style={{ textDecoration: "none", color: "white" }}
+                >
                 <div className={style.content}>
                     <img className={style.img} src={props.imageUrl}/>
                     <div className={style.name}>{props.playlistName}</div>
-
                 </div>
+            </NavLink>
             <PlayCircleFilledWhiteIcon
                 onClick={()=>{
                     console.log("a")
                 }}
                 className={style.icon}/>
-        </NavLink>
+        </div>
     )
 }

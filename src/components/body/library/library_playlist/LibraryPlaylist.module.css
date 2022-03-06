@@ -1,0 +1,107 @@
+.container{
+    width:100%;
+    height: 100% ;
+    background-image: linear-gradient(#222221, #000000);
+    padding: 100px 30px 100px 30px;
+    position: relative;
+    margin-top:  -58px;
+    color:white;
+}
+
+.playListContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tracksName{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.playlistItems{
+    margin-top: 34px;
+    margin-bottom: 34px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+}
+
+.likedSongs{
+    position: relative;
+    padding: 20px;
+    height: auto;
+    min-height: 240px;
+    width: 38%;
+    color: black;
+    background-color: yellow;
+    border-radius: 6px;
+    background-image: linear-gradient(to bottom right,#450BF5,#8D8EE5) ;
+    display: flex;
+    flex-direction: column;
+    font-weight: 500;
+    color:white;
+    justify-content: flex-end;
+
+}
+
+.icon {
+    display: block;
+    color: #1cd760;
+    font-size: 300% !important;
+    justify-self: flex-end;
+    position: absolute;
+    right: 10%;
+    transform: translateY(70%);
+    opacity: 0;
+    box-shadow: 0 1px 0px 0 black;
+    border-radius: 50%;
+}
+
+.icon:hover{
+    font-size: 320% !important;
+    cursor: pointer;
+}
+
+@keyframes myAnimation {
+    from {
+        transform: translateY(70%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(-10%);
+        opacity: 1;
+    }
+}
+
+.likedSongs:hover .icon {
+    display: block;
+    animation: myAnimation 0.4s;
+    animation-fill-mode: forwards;
+
+}
+
+@media screen and (max-width: 1300px) {
+    .likedSongs {
+        width: 46.5%;
+    }
+}
+
+@media screen and (max-width: 1098px) {
+    .likedSongs {
+        width: 63%;
+    }
+
+}
+
+@media screen and (max-width: 860px) {
+    .likedSongs {
+        width: 100%;
+    }
+
+}
+

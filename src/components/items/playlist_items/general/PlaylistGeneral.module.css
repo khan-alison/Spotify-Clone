@@ -1,7 +1,7 @@
 .container{
     background-color: #181818;
     border-radius: 6px;
-    padding:20px 20px 0 20px ;
+    padding:20px 20px 20px 20px ;
     display: flex;
     flex-direction: column;
     gap:6px;
@@ -30,11 +30,11 @@
 
 .description{
     font-size: 13px;
+    color:#A7A7A7;
 }
 
 .artist:hover{
-    text-decoration: underline !important;
-    color: white !important;
+    text-decoration: underline ;
 }
 
 .container:hover .icon {
@@ -62,6 +62,7 @@
 .icon:hover{
     font-size: 220% !important;
     color: #18e160;
+    cursor: pointer;
     /*background-color: rgba(80, 78, 78, 0.4);*/
 }
 
@@ -89,11 +90,11 @@
 
 @media screen and (max-width: 1300px) {
     .container {
-        width: 22%;
+        width: 24%;
     }
 }
 
-@media screen and (max-width: 1164px) {
+@media screen and (max-width: 1100px) {
     .container {
         width: 30%;
     }
@@ -129,7 +130,7 @@
 
 @media screen and (max-width: 860px) {
     .container {
-        width: 46%;
+        width: 47.8%;
     }
 
     .container:hover .icon {
@@ -161,6 +162,7 @@
 }
 
 @media screen and (max-width: 790px) {
+
     .icon{
         transform: translateY(130%);
         font-size: 250% !important;

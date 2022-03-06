@@ -4,18 +4,21 @@ import SideBar from "../../components/sidebar/SideBar";
 import Header from "../../components/header/Header";
 import Home from "../../components/body/home/Home";
 import Footer from "../../components/footer/Footer";
-import {Routes,Route} from 'react-router';
+import {Routes, Route} from 'react-router';
+import {BrowserRouter, Navigate} from 'react-router-dom';
 import Search from "../../components/body/search/SearchPage";
 import LibraryPage from "../../components/body/library/LibraryPage";
 import UserPlaylist from "../../components/body/userPlaylist/UserPlaylist";
 import {useSelector} from "react-redux";
+import LibraryPlaylist from "../../components/body/library/library_playlist/LibraryPlaylist";
+import LibraryPodcasts from "../../components/body/library/library_podcasts/LibraryPodcasts";
 
-interface ILandingPage{
-    accessToken:any,
-    spotify:any
+interface ILandingPage {
+    accessToken: any,
+    spotify: any
 }
 
-export default function  LandingPage({accessToken,spotify}:ILandingPage) {
+export default function LandingPage({accessToken, spotify}: ILandingPage) {
     const [playingTrack, setPlayingTrack] = useState();
     const state = useSelector((state: any) => state.auth);
 
@@ -23,7 +26,7 @@ export default function  LandingPage({accessToken,spotify}:ILandingPage) {
         setPlayingTrack(track.uri);
     };
 
-    return(
+    return (
         <div className={style.container}>
             <div className={style.body}>
                 <div className={style.body_left}>
@@ -32,12 +35,19 @@ export default function  LandingPage({accessToken,spotify}:ILandingPage) {
                 <div className={style.body_right}>
                     <div>
 
-                        <Header />
+                        <Header/>
 
                         <Routes>
                             <Route path="/" element={<Home/>}/>
                             <Route path="/search" element={<Search/>}/>
-                            <Route path="/library" element={<LibraryPage/>}/>
+                            <Route path="/library" element={<LibraryPage/>}>
+                                <Route
+                                    index
+                                    element={<Navigate to="/library/playlists"/>}
+                                />
+                                <Route path="playlists" element={<LibraryPlaylist/>}/>
+                                <Route path="podcasts" element={<LibraryPodcasts/>}/>
+                            </Route>
                             <Route path="/playlist/:playlistID" element={<UserPlaylist spotify={spotify}/>}/>
                         </Routes>
 

@@ -56,15 +56,19 @@
     color: #1cd760;
     font-size: 200% !important;
     justify-self: flex-end;
-    position: relative;
+    position: absolute;
     right: 10%;
     transform: translateX(100%);
     opacity: 0;
-    box-shadow: 0 2px 4px 0 black;
+    box-shadow: 0 1px 0px 0 black;
     border-radius: 50%;
 }
 
-
+.icon:hover{
+    color: #18e160;
+    font-size: 220% !important;
+    cursor: pointer;
+}
 
 @keyframes myAnimation {
     from {
@@ -90,17 +94,39 @@
     .container {
         width: 31%;
     }
+
+
 }
 
 @media screen and (max-width: 1164px) {
     .container {
         width: 48%;
     }
+
+    .icon{
+        font-size: 250% !important;
+    }
+
+    .icon:hover{
+        /*transform: scale(1.06) !important;*/
+        color: #18e160;
+        font-size: 270% !important;
+    }
 }
 
-@media screen and (max-width: 770px) {
+@media screen and (max-width: 860px) {
     .container {
         width: 96%;
+    }
+
+    .icon{
+        font-size: 300% !important;
+    }
+
+    .icon:hover{
+        /*transform: scale(1.06) !important;*/
+        color: #18e160;
+        font-size: 320% !important;
     }
 }
 

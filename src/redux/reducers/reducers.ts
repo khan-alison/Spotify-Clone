@@ -3,6 +3,7 @@ const initialState={
     usePlaylist:[],
     recentlyPlayedTracks:[],
     playlist:[],
+    savedTracks:[]
 }
 
 export const reducers = (state = initialState, action: any) => {
@@ -28,6 +29,12 @@ export const reducers = (state = initialState, action: any) => {
             return{
                 ...state,
                 recentlyPlayedTracks:action.payload,
+            }
+        case 'GET_SAVED_TRACKS':
+            return{
+
+                ...state,
+                savedTracks: action.payload,
             }
 
         default:

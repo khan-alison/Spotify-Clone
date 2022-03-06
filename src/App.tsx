@@ -8,7 +8,7 @@ import LandingPage from "./pages/landing_page/LandingPage";
 import {spotifyApi} from "./spotify/api";
 import {useDispatch} from "react-redux";
 import {getTokenFromURL} from "./spotify/api"
-import {getRecentlyPlayedTrack, getUserInformation, getUserPlaylist} from "./redux/actions/actions";
+import {getRecentlyPlayedTrack, getSavedTracks, getUserInformation, getUserPlaylist} from "./redux/actions/actions";
 import {Routes,Route} from 'react-router';
 
 
@@ -58,6 +58,21 @@ function App() {
     spotifyApi.getUserPlaylists().then((userPlaylists: any) => {
       dispatch(getUserPlaylist(userPlaylists.body.items));
     });
+
+    spotifyApi.getMySavedAlbums().then((myTopArtists: any) => {
+      // dispatch(getSavedAlbum(myTopArtists.body.items));
+      console.log(myTopArtists.body.items)
+    });
+
+    spotifyApi
+        .getMySavedTracks({
+          limit: 50,
+          offset: 0,
+        })
+        .then((myPlaylist: any) => {
+          dispatch(getSavedTracks(myPlaylist.body.items));
+          console.log(myPlaylist.body.items)
+        });
 
     spotifyApi
         .getMyRecentlyPlayedTracks({

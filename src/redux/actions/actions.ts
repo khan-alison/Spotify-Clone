@@ -19,5 +19,12 @@ export const getRecentlyPlayedTrack =  (payload: any)=>{
     }
 }
 
+export const getSavedTracks = (payload: any)=>{
+    return{
+        type: 'GET_SAVED_TRACKS',
+        payload,
+    }
+}
+
 
 

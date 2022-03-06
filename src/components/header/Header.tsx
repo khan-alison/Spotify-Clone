@@ -1,11 +1,13 @@
 import React, {useEffect, useRef, useState} from "react"
 import style from "./Header.module.css"
-import {useLocation} from 'react-router-dom';
+import useRouteMatch, {Link, NavLink, useLocation, useMatch} from 'react-router-dom';
 import {useNavigate} from 'react-router-dom';
 import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
 import ArrowForwardIosRoundedIcon from '@mui/icons-material/ArrowForwardIosRounded';
 import {useSelector} from "react-redux";
 import {Dropdown} from "react-bootstrap";
+import "./style.css"
+
 
 export default function Header() {
     const [state, setState] = useState(0)
@@ -14,6 +16,12 @@ export default function Header() {
     const [url, setUrl] = useState("")
     const user = useSelector((state: any) => state.auth.user);
     const location = useLocation();
+    const active = {
+        backgroundColor: "red !important",
+        padding: "10px",
+        borderRadius: "4px",
+    }
+
     useEffect(() => {
         window.addEventListener("scroll", handleScroll);
     }, [])
@@ -63,8 +71,79 @@ export default function Header() {
                             <div>{state}</div>
                         )
                     case "/library":
+                    case "/library/playlists":
+                    case "/library/podcasts":
+                    case "/library/artists":
+                    case "/library/albums":
                         return (
-                            <div>library</div>
+                                <div
+                                    className={style.navBar}
+                                >
+                                    <ul
+                                        className={style.navItems}
+                                    >
+                                        <li>
+                                            <NavLink
+                                                style={{
+                                                    textDecoration: "none",
+                                                    color: "#fff",
+                                                    padding: "10px",
+                                                    fontSize: "14px",
+                                                    fontWeight: "bold",
+                                                }}
+                                                className={(navData) => navData.isActive ? "headNavActive" : "" }
+                                                to={`/library/playlists`}
+                                            >
+                                                Playlists
+                                            </NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink
+                                                style={{
+                                                    textDecoration: "none",
+                                                    color: "#fff",
+                                                    padding: "10px",
+                                                    fontSize: "14px",
+                                                    fontWeight: "bold",
+                                                }}
+                                                className={(navData) => navData.isActive ? "headNavActive" : "" }
+                                                to={`/library/podcasts`}
+                                            >
+                                                Podcasts
+                                            </NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink
+                                                style={{
+                                                    textDecoration: "none",
+                                                    color: "#fff",
+                                                    padding: "10px",
+                                                    fontSize: "14px",
+                                                    fontWeight: "bold",
+                                                }}
+                                                className={(navData) => navData.isActive ? "headNavActive" : "" }
+                                                to={`/library/artists`}
+                                            >
+                                                Artists
+                                            </NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink
+                                                style={{
+                                                    textDecoration: "none",
+                                                    color: "#fff",
+                                                    padding: "10px",
+                                                    fontSize: "14px",
+                                                    fontWeight: "bold",
+                                                }}
+                                                className={(navData) => navData.isActive ? "headNavActive" : "" }
+                                                to={`/library/albums`}
+                                            >
+                                                Albums
+                                            </NavLink>
+                                        </li>
+                                    </ul>
+                                </div>
                         )
                     default:
                         return (
