@@ -3,7 +3,12 @@ const initialState={
     usePlaylist:[],
     recentlyPlayedTracks:[],
     playlist:[],
-    savedTracks:[]
+    savedTracks:[],
+    savedAlbums:[],
+    followedArtist:[],
+    artistName:[],
+    artistID:[],
+
 }
 
 export const reducers = (state = initialState, action: any) => {
@@ -36,7 +41,26 @@ export const reducers = (state = initialState, action: any) => {
                 ...state,
                 savedTracks: action.payload,
             }
-
+        case 'GET_SAVED_ALBUMS':
+            return{
+                ...state,
+                savedAlbums:action.payload,
+            }
+        case 'GET_FOLLOWED_ARTIST':
+            return{
+                ...state,
+                followedArtist:action.payload,
+            }
+        case 'GET_ARTIST_NAME':
+            return{
+                ...state,
+                artistName:action.payload
+            }
+        case 'GET_ARTIST_ID':
+            return{
+                ...state,
+                artistID:action.payload
+            }
         default:
             return initialState;
     }

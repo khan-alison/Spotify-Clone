@@ -69,31 +69,31 @@ export default function Home() {
                 <h4>Recently Playlist</h4>
                 <div className={style.recentlyTracksItems}>
                     {
-                        recentlyPlayedTracks.map((item:any,index:any)=>(
-                                <TrackItems
-                                    key={index}
-                                    imgUrl={item.track.album.images[0].url}
-                                    title={item.track.name}
-                                    content={""}
-                                    id={""}
-                                    artists={item.track.artists}
-                                />
+                        recentlyPlayedTracks.map((item: any, index: any) => (
+                            <TrackItems
+                                key={index}
+                                imgUrl={item.track.album.images[0].url}
+                                title={item.track.name}
+                                content={""}
+                                id={""}
+                                artists={item.track.artists}
+                            />
                         ))
                     }
                     {
-                        recentlyPlayedTracks.map((item:any,index:any)=>(
-                                <TrackItems
-                                    key={index}
-                                    imgUrl={item.track.album.images[0].url}
-                                    title={item.track.name}
-                                    content={""}
-                                    id={""}
-                                    artists={item.track.artists}
-                                />
+                        recentlyPlayedTracks.map((item: any, index: any) => (
+                            <TrackItems
+                                key={index}
+                                imgUrl={item.track.album.images[0].url}
+                                title={item.track.name}
+                                content={""}
+                                id={""}
+                                artists={item.track.artists}
+                            />
                         ))
                     }
                     {
-                        recentlyPlayedTracks.map((item:any,index:any)=>(
+                        recentlyPlayedTracks.map((item: any, index: any) => (
                             <TrackItems
                                 key={index}
                                 imgUrl={item.track.album.images[0].url}

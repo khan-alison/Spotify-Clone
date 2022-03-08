@@ -5,7 +5,7 @@
     display: flex;
     flex-direction: column;
     gap:6px;
-    width: 18%;
+    width: 18.2%;
     position: relative;
 }
 
@@ -90,13 +90,13 @@
 
 @media screen and (max-width: 1300px) {
     .container {
-        width: 24%;
+        width: 22.3%;
     }
 }
 
 @media screen and (max-width: 1100px) {
     .container {
-        width: 30%;
+        width: 30.4%;
     }
 
     .container:hover .icon {
@@ -130,7 +130,7 @@
 
 @media screen and (max-width: 860px) {
     .container {
-        width: 47.8%;
+        width: 48.2%;
     }
 
     .container:hover .icon {

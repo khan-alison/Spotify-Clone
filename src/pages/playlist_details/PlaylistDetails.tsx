@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
-import style from "./UserPlaylist.module.css"
+import style from "./PlaylistDetails.module.css"
 import useRouteMatch, {useLocation,useParams} from "react-router-dom"
 import {useDispatch, useSelector} from "react-redux";
-import {spotifyApi} from "../../../spotify/api";
-import {getUserPlaylist} from "../../../redux/actions/actions";
+import {spotifyApi} from "../../spotify/api";
+import {getUserPlaylist} from "../../redux/actions/actions";
 
 
 interface  IUserPlaylist{
@@ -12,7 +12,7 @@ interface  IUserPlaylist{
 
 
 
-export default function  UserPlaylist(props:IUserPlaylist){
+export default function  PlaylistDetails(props:IUserPlaylist){
     let playListId = useParams()
     const dispatch = useDispatch();
     const [userPlaylistData, getUserPlaylistData] = useState<any>("");

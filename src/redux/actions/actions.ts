@@ -26,5 +26,33 @@ export const getSavedTracks = (payload: any)=>{
     }
 }
 
+export const getMySavedAlbums = (payload: any)=>{
+    return{
+        type: 'GET_SAVED_ALBUMS',
+        payload,
+    }
+}
+
+export const getFollowedArtists = (payload: any)=>{
+    return{
+        type: 'GET_FOLLOWED_ARTIST',
+        payload,
+    }
+}
+
+export const getArtistName = (payload: any)=>{
+    return{
+        type: 'GET_ARTIST_NAME',
+        payload,
+    }
+}
+
+export const getArtistID = (payload: any)=>{
+    return{
+        type: 'GET_ARTIST_ID',
+        payload,
+    }
+}
+
 
 

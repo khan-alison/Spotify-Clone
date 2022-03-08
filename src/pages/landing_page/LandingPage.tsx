@@ -8,10 +8,13 @@ import {Routes, Route} from 'react-router';
 import {BrowserRouter, Navigate} from 'react-router-dom';
 import Search from "../../components/body/search/SearchPage";
 import LibraryPage from "../../components/body/library/LibraryPage";
-import UserPlaylist from "../../components/body/userPlaylist/UserPlaylist";
+import PlaylistDetails from "../playlist_details/PlaylistDetails";
 import {useSelector} from "react-redux";
 import LibraryPlaylist from "../../components/body/library/library_playlist/LibraryPlaylist";
 import LibraryPodcasts from "../../components/body/library/library_podcasts/LibraryPodcasts";
+import LibraryArtists from "../../components/body/library/library_artists/LibraryArtists";
+import LibraryAlbums from "../../components/body/library/library_albums/LibraryAlbums";
+import ArtistDetails from "../artist_details/ArtistDetails";
 
 interface ILandingPage {
     accessToken: any,
@@ -34,9 +37,7 @@ export default function LandingPage({accessToken, spotify}: ILandingPage) {
                 </div>
                 <div className={style.body_right}>
                     <div>
-
                         <Header/>
-
                         <Routes>
                             <Route path="/" element={<Home/>}/>
                             <Route path="/search" element={<Search/>}/>
@@ -46,9 +47,11 @@ export default function LandingPage({accessToken, spotify}: ILandingPage) {
                                     element={<Navigate to="/library/playlists"/>}
                                 />
                                 <Route path="playlists" element={<LibraryPlaylist/>}/>
-                                <Route path="podcasts" element={<LibraryPodcasts/>}/>
+                                <Route path="artists" element={<LibraryArtists/>}/>
+                                <Route path="albums" element={<LibraryAlbums/>}/>
                             </Route>
-                            <Route path="/playlist/:playlistID" element={<UserPlaylist spotify={spotify}/>}/>
+                            <Route path="/playlist/:playlistID" element={<PlaylistDetails spotify={spotify}/>}/>
+                            <Route path="/artist/:artistID" element={<ArtistDetails spotify={spotify}/>}/>
                         </Routes>
 
                     </div>

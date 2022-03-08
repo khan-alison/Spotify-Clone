@@ -13,9 +13,12 @@ interface ITrackItems {
 
 
 export default function PlaylistGeneral(props:ITrackItems){
+    const handlePlayIconClick = ()=>{
+        console.log("a")
+    }
     return(
         <div className={style.container}>
-            <NavLink to="/" style={{textDecoration:"none",color:"white"}} >
+            <NavLink to={`/playlist/${props.playlistId}`} style={{textDecoration:"none",color:"white"}} >
                 <img className={style.img} src={props.imageUrl} alt=""/>
 
                 <h5 className={style.name}>{props.playlistName}</h5>
@@ -23,9 +26,7 @@ export default function PlaylistGeneral(props:ITrackItems){
 
             </NavLink>
             <PlayCircleFilledWhiteIcon
-                onClick={()=>{
-                    console.log("a")
-                }}
+                onClick={handlePlayIconClick}
                 className={style.icon}/>
         </div>
     )

@@ -6,6 +6,7 @@
     display: flex;
     justify-content: space-between;
     z-index: 1;
+    /*background-color: black;*/
 }
 
 .headerLeft{
@@ -77,7 +78,7 @@
 }
 
 .userName {
-    max-width: 124px;
+    max-width: 100px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -119,8 +120,8 @@
 
 
 .navBar{
-    position: relative;
-    top:8px
+    /*position: relative;*/
+    /*top:8px*/
 }
 
 .navItems{

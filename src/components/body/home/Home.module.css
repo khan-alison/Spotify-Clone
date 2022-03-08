@@ -1,14 +1,19 @@
-.container{
-    width:100%;
-    height: 100% ;
+.container {
+    width: 100%;
+    height: 100%;
+    bottom: 0;
     background-image: linear-gradient(#222221, #000000);
-    padding: 100px 30px 100px 30px;
+    padding: 80px 30px 100px 30px;
     position: relative;
-    margin-top:  -58px;
-    color:white;
+    margin-top: -58px;
+    color: white;
 }
 
-.playlistItems{
+h4 {
+    font-weight: 700;
+}
+
+.playlistItems {
     margin-top: 34px;
     margin-bottom: 34px;
     display: flex;
@@ -17,12 +22,12 @@
     width: 100%;
 }
 
-.recentlyTracksItems{
+.recentlyTracksItems {
     display: flex;
-    gap:26px;
+    gap: 26px;
     flex-wrap: wrap;
 }
 
-.recentlyTracks{
+.recentlyTracks {
 
 }

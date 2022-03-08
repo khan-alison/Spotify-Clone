@@ -10,11 +10,13 @@ import "./style.css"
 
 
 export default function Header() {
-    const [state, setState] = useState(0)
-    const [headerHeight, setHeadeHeight] = useState(0)
+    const [state, setState] = useState('')
+    const [headerHeight, setHeaderHeight] = useState(0)
     const navigate = useNavigate();
     const [url, setUrl] = useState("")
     const user = useSelector((state: any) => state.auth.user);
+    const artistName = useSelector((state: any) => state.auth.artistName);
+    const artistID = useSelector((state: any) => state.auth.artistID);
     const location = useLocation();
     const active = {
         backgroundColor: "red !important",
@@ -22,28 +24,39 @@ export default function Header() {
         borderRadius: "4px",
     }
 
+
+
+
     useEffect(() => {
+        let handleScroll: any
+        let height:number
+        if(location.pathname.includes("/artist/")){
+            height = 500
+        }else{
+            height = headerHeight+120
+        }
+        handleScroll = () => {
+            if (window.pageYOffset == 0) {
+                setState(`rgba(0,0,0,0)`);
+            } else if (window.pageYOffset > 0 && window.pageYOffset < height ) {
+                if(location.pathname.includes("/artist/")){
+                    setState(`rgba(0,0,0,${window.pageYOffset / (height-200)})`);
+                }else{
+                    setState(`rgba(0,0,0,${window.pageYOffset / (height-100)})`);
+                }
+            } else {
+                setState(`rgba(0,0,0,1)`);
+            }
+        }
         window.addEventListener("scroll", handleScroll);
-    }, [])
+    }, [location.pathname])
 
     const ref = useRef(null)
 
     useEffect(() => {
         // @ts-ignore
-        setHeadeHeight(ref.current.clientHeight)
+        setHeaderHeight(ref.current.clientHeight)
     })
-
-    const handleScroll = () => {
-        if (window.pageYOffset == 0) {
-            setState(0);
-        } else if (window.pageYOffset > 0 && window.pageYOffset < headerHeight + 150) {
-            setState(window.pageYOffset / (headerHeight + 150));
-        } else {
-            setState(1);
-        }
-
-    }
-
 
     function handleClick() {
         navigate('/')
@@ -51,7 +64,7 @@ export default function Header() {
 
     return (
 
-        <div className={style.container} ref={ref} style={{backgroundColor: `rgba(0,0,0,${state})`}}>
+        <div className={style.container} ref={ref} style={{backgroundColor: `${state}`}}>
             <div className={style.headerLeft}>
                 <div className={style.navLayout} onClick={() => navigate(-1)}>
                     <ArrowBackIosNewRoundedIcon style={{fontSize: "14px"}}/>
@@ -59,23 +72,28 @@ export default function Header() {
                 <div className={style.navLayout} onClick={() => navigate(1)}>
                     <ArrowForwardIosRoundedIcon style={{fontSize: "14px"}}/>
                 </div>
-            </div>
-            {(() => {
-                switch (location.pathname) {
-                    case "/":
-                        return (
-                            <div></div>
-                        )
-                    case "/search":
-                        return (
-                            <div>{state}</div>
-                        )
-                    case "/library":
-                    case "/library/playlists":
-                    case "/library/podcasts":
-                    case "/library/artists":
-                    case "/library/albums":
-                        return (
+                {(() => {
+                    switch (location.pathname) {
+                        case "/":
+                            return (
+                                <div></div>
+                            )
+                        break
+                        case "/search":
+                            return (
+                                <div>{state}</div>
+                            )
+                        case `/artist/${artistID}`:
+
+                            return (
+                                <div>{artistName}</div>
+                            )
+                        case "/library":
+                        case "/library/playlists":
+                        case "/library/podcasts":
+                        case "/library/artists":
+                        case "/library/albums":
+                            return (
                                 <div
                                     className={style.navBar}
                                 >
@@ -91,12 +109,27 @@ export default function Header() {
                                                     fontSize: "14px",
                                                     fontWeight: "bold",
                                                 }}
-                                                className={(navData) => navData.isActive ? "headNavActive" : "" }
+                                                className={(navData) => navData.isActive ? "headNavActive" : ""}
                                                 to={`/library/playlists`}
                                             >
                                                 Playlists
                                             </NavLink>
                                         </li>
+                                        {/*<li>*/}
+                                        {/*    <NavLink*/}
+                                        {/*        style={{*/}
+                                        {/*            textDecoration: "none",*/}
+                                        {/*            color: "#fff",*/}
+                                        {/*            padding: "10px",*/}
+                                        {/*            fontSize: "14px",*/}
+                                        {/*            fontWeight: "bold",*/}
+                                        {/*        }}*/}
+                                        {/*        className={(navData) => navData.isActive ? "headNavActive" : "" }*/}
+                                        {/*        to={`/library/podcasts`}*/}
+                                        {/*    >*/}
+                                        {/*        Podcasts*/}
+                                        {/*    </NavLink>*/}
+                                        {/*</li>*/}
                                         <li>
                                             <NavLink
                                                 style={{
@@ -106,22 +139,7 @@ export default function Header() {
                                                     fontSize: "14px",
                                                     fontWeight: "bold",
                                                 }}
-                                                className={(navData) => navData.isActive ? "headNavActive" : "" }
-                                                to={`/library/podcasts`}
-                                            >
-                                                Podcasts
-                                            </NavLink>
-                                        </li>
-                                        <li>
-                                            <NavLink
-                                                style={{
-                                                    textDecoration: "none",
-                                                    color: "#fff",
-                                                    padding: "10px",
-                                                    fontSize: "14px",
-                                                    fontWeight: "bold",
-                                                }}
-                                                className={(navData) => navData.isActive ? "headNavActive" : "" }
+                                                className={(navData) => navData.isActive ? "headNavActive" : ""}
                                                 to={`/library/artists`}
                                             >
                                                 Artists
@@ -136,7 +154,7 @@ export default function Header() {
                                                     fontSize: "14px",
                                                     fontWeight: "bold",
                                                 }}
-                                                className={(navData) => navData.isActive ? "headNavActive" : "" }
+                                                className={(navData) => navData.isActive ? "headNavActive" : ""}
                                                 to={`/library/albums`}
                                             >
                                                 Albums
@@ -144,13 +162,14 @@ export default function Header() {
                                         </li>
                                     </ul>
                                 </div>
-                        )
-                    default:
-                        return (
-                            <div>default</div>
-                        )
-                }
-            })()}
+                            )
+                        default:
+                            return (
+                                <div></div>
+                            )
+                    }
+                })()}
+            </div>
             <div className={style.headerRight}>
                 <Dropdown style={{display: "flex"}}>
                     <Dropdown.Toggle

@@ -12,6 +12,9 @@ interface IPlaylistItems{
 }
 
 export default function PlaylistItems(props:IPlaylistItems){
+    const handlePlayIconClick = ()=>{
+        console.log("a")
+    }
     return (
         <div className={style.container}>
             <NavLink
@@ -24,9 +27,7 @@ export default function PlaylistItems(props:IPlaylistItems){
                 </div>
             </NavLink>
             <PlayCircleFilledWhiteIcon
-                onClick={()=>{
-                    console.log("a")
-                }}
+                onClick={handlePlayIconClick}
                 className={style.icon}/>
         </div>
     )

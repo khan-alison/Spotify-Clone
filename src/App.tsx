@@ -8,7 +8,13 @@ import LandingPage from "./pages/landing_page/LandingPage";
 import {spotifyApi} from "./spotify/api";
 import {useDispatch} from "react-redux";
 import {getTokenFromURL} from "./spotify/api"
-import {getRecentlyPlayedTrack, getSavedTracks, getUserInformation, getUserPlaylist} from "./redux/actions/actions";
+import {
+    getFollowedArtists, getMySavedAlbums,
+    getRecentlyPlayedTrack,
+    getSavedTracks,
+    getUserInformation,
+    getUserPlaylist
+} from "./redux/actions/actions";
 import {Routes,Route} from 'react-router';
 
 
@@ -71,25 +77,59 @@ function App() {
         })
         .then((myPlaylist: any) => {
           dispatch(getSavedTracks(myPlaylist.body.items));
-          console.log(myPlaylist.body.items)
         });
+      spotifyApi.getMySavedAlbums({
+          limit : 20,
+          offset: 0
+      })
+          .then((data:any) => {
+              // Output items
+                dispatch(getMySavedAlbums(data.body.items))
+          }, function(err:any) {
+              console.log('Something went wrong!', err);
+          });
 
     spotifyApi
         .getMyRecentlyPlayedTracks({
           limit: 20,
         })
-        .then(
-            function (data: any) {
-              console.log(data.body.items);
+        .then((data: any) =>{
               dispatch(getRecentlyPlayedTrack(data.body.items))
             },
             function (err: Error) {
               console.log("Something went wrong!", err);
             }
         );
+      spotifyApi.getCategories({
+          limit : 5,
+          offset: 0,
+          country: 'SE',
+          locale: 'sv_SE'
+      })
+          .then((data:any) =>{
+              console.log(data.body);
+          }, function(err:any) {
+              console.log("Something went wrong!", err);
+          });
+      spotifyApi.getPlaylistsForCategory('party', {
+          country: 'us',
+          limit : 2,
+          offset : 0
+      })
+          .then((data:any) => {
+              console.log("category"+data.body);
+          }, function(err:any) {
+              console.log("Something went wrong!", err);
+          });
 
+      spotifyApi.getMyTopArtists()
+          .then((data:any) => {
+              let topArtists = data.body.items;
+              console.log("top artist:"+topArtists);
+          }, function(err:any) {
+              console.log('Something went wrong!', err);
+          });
   }
-
 
   return (
       <div>
