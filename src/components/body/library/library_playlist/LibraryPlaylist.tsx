@@ -13,9 +13,6 @@ export default function LibraryPlaylist(){
 
     const ref = useRef(null)
 
-    // @ts-ignore
-    console.log(ref?.current?.offsetTop)
-
     useEffect(()=>{
         spotifyApi
             .getMySavedTracks({

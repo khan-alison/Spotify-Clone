@@ -11,6 +11,7 @@ export default function LibraryArtists  () {
     const [message, setMessage] = useState('')
 
     const callbackFunction = (childData:any) => {
+        console.log(childData)
         setMessage(childData)
     }
     useEffect(()=>{

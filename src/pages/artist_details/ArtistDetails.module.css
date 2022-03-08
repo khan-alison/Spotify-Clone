@@ -1,12 +1,11 @@
 .container {
     width: 100%;
     height: 100%;
-    /*background-image: linear-gradient(#222221, #000000);*/
-    /*padding: 100px 30px 100px 30px;*/
     position: relative;
     margin-top: -100px;
-    color: black;
+    color: white;
 }
+
 
 .header{
     position: relative;
@@ -17,7 +16,7 @@
     height: 350px;
     max-width: none;
     display: flex;
-    padding: 0 32px;
+    /*padding: 0 32px;*/
     margin-top: -100px;
     background-size: contain;
 }
@@ -40,6 +39,123 @@
     /*text-overflow: fade;*/
 }
 
+.body{
+    padding: 40px 30px 4000px 30px;
+    position: relative;
+}
+
+.icon {
+    color: #1cd760;
+    font-size: 400% !important;
+    justify-self: flex-end;
+    box-shadow: 0 1px 0px 0 black;
+    border-radius: 50%;
+}
+
+.icon:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.artistOptions{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.flwBtn{
+    color:white;
+    border-radius: 8px;
+    border: 1px solid white;
+    padding: 4px 16px;
+}
+
+.flwBtn:hover{
+    cursor: pointer;
+}
+
+.popularContainer{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.popularItem{
+    border: 1px solid transparent;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 14px
+}
+
+.popularItem:hover{
+    background-color: rgba(0,0,0,0.2);
+
+}
+
+.popularity {
+    justify-content: center;
+    width: 25%;
+    display: flex;
+}
+
+.popularContent{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 50%;
+}
+
+.actions{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    width: 25%;
+    justify-content: flex-end;
+}
+
+
+.image{
+    height: 40px;
+    width: auto;
+}
+
+.userInfo:focus {
+    box-shadow: none !important;
+}
+
+.name{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-self: center;
+}
+
+.duration_ms{
+    width: 60px;
+}
+
+.dropDownItems:hover {
+    animation: changeBgColor 0.5s;
+    animation-fill-mode: forwards;
+    color: white;
+}
+
+
+.dropDownItems{
+    color:white;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.dropDownItems:hover {
+    animation: changeBgColor 0.5s;
+    animation-fill-mode: forwards;
+    color: white;
+}
+
 @media screen and (max-width: 1068px) {
     .headerInfo > h2 {
         font-weight: bold;
@@ -48,17 +164,12 @@
     }
 }
 
+
+
 @media screen and (max-width: 860px) {
     .header {
-        /*background-position: 0px -100px;*/
         height: 306px;
     }
-    /*.headerInfo {*/
-    /*    top: 160px;*/
-    /*}*/
-    /*.bodyInfo {*/
-    /*    margin-top: 0;*/
-    /*}*/
     .headerInfo > h2 {
         font-weight: bold;
         font-size: 56px;
@@ -67,18 +178,18 @@
 }
 
 @media screen and (max-width: 770px) {
-    .header {
-        /*background-position: 0px -100px;*/
-    }
-    /*.headerInfo {*/
-    /*    top: 160px;*/
-    /*}*/
-    /*.bodyInfo {*/
-    /*    margin-top: 0;*/
-    /*}*/
     .headerInfo > h2 {
         font-weight: bold;
         font-size: 50px;
         text-shadow: 1px 1px 2px black;
+    }
+}
+
+@keyframes changeBgColor {
+    from {
+        background-color: rgb(61, 65, 68);
+    }
+    to {
+        background-color: rgba(127, 137, 145, 0.5);
     }
 }

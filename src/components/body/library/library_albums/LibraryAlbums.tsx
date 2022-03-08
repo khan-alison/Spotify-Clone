@@ -5,7 +5,6 @@ import AlbumItems from "../../../items/album_items/AlbumItems";
 
 const LibraryAlbums = () => {
     const savedAlbums = useSelector((state: any)=>state.auth.savedAlbums)
-    console.log(savedAlbums)
     return (
         <div className={style.container}>
             <h4>Albums</h4>

@@ -9,10 +9,32 @@
     /*background-color: black;*/
 }
 
+.artistName{
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
 .headerLeft{
     display: flex;
-    gap:12px;
+    gap:16px;
     position: relative;
+    align-items: center;
+}
+
+.icon {
+    color: #1cd760;
+    font-size: 300% !important;
+    justify-self: flex-end;
+    box-shadow: 0 1px 0px 0 black;
+    border-radius: 50%;
+}
+
+.icon:hover{
+    transform: scale(1.1);
+    cursor: pointer;
 }
 
 .headerRight{
@@ -32,6 +54,12 @@
     align-items: center;
     justify-content: center;
     color: white
+}
+
+.headerInfo{
+    display: flex;
+    align-items: center;
+    gap: 16px
 }
 
 .active{
@@ -96,6 +124,7 @@
 }
 
 .Dropdown {
+    min-width: auto;
     z-index: 1000;
 }
 

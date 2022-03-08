@@ -24,17 +24,16 @@ export default function ArtistItems(props:ITrackItems){
     const dispatch = useDispatch();
 
     const handleUnfollowClick = ()=>{
-        props.parentCallback(`${flwLength}`)
         spotifyApi.getFollowedArtists({ limit : 30 })
             .then((data:any) => {
                 // console.log(data.body.artists.items.length)
-                setFlwLength(data.body.artists.items.length)
                 setFlwArtist(data.body.artists.items)
+                setFlwLength(data.body.artists.items.length)
+                props.parentCallback(`${flwLength}`)
             }, function(err:any) {
                 console.log('Something went wrong!', err);
             });
         spotifyApi.unfollowArtists([props.artistId])
-
             .then(function(data:any) {
             }, function(err:any) {
                 console.log('Something went wrong!', err);

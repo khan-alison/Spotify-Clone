@@ -2,6 +2,8 @@ import React from "react";
 import {NavLink} from "react-router-dom";
 import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite';
 import style from "./TrackItems.module.css"
+import {getArtistID, getArtistName} from "../../../redux/actions/actions";
+import {useDispatch} from "react-redux";
 
 interface ITrackItems {
     imgUrl: string;
@@ -13,6 +15,13 @@ interface ITrackItems {
 
 
 export default function TrackItems(props:ITrackItems){
+    const dispatch = useDispatch();
+
+    const handleClick = (id:string,name:string)=>{
+        dispatch(getArtistID(id))
+        dispatch(getArtistName(name))
+    }
+
     const handlePlayIconClick = ()=>{
         console.log("a")
     }
@@ -27,6 +36,7 @@ export default function TrackItems(props:ITrackItems){
                         key={index}
                         to={`/artist/${item.id}`}
                         className={style.artist}
+                        onClick={()=>handleClick(item.id,item.name)}
                         style={{textDecoration:"none",color:"#A7A7A7"}}
                     >
                         {

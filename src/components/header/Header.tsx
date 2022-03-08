@@ -4,6 +4,8 @@ import useRouteMatch, {Link, NavLink, useLocation, useMatch} from 'react-router-
 import {useNavigate} from 'react-router-dom';
 import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
 import ArrowForwardIosRoundedIcon from '@mui/icons-material/ArrowForwardIosRounded';
+import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite';
+
 import {useSelector} from "react-redux";
 import {Dropdown} from "react-bootstrap";
 import "./style.css"
@@ -17,6 +19,7 @@ export default function Header() {
     const user = useSelector((state: any) => state.auth.user);
     const artistName = useSelector((state: any) => state.auth.artistName);
     const artistID = useSelector((state: any) => state.auth.artistID);
+    const [display,setDisplay] = useState("")
     const location = useLocation();
     const active = {
         backgroundColor: "red !important",
@@ -38,14 +41,19 @@ export default function Header() {
         handleScroll = () => {
             if (window.pageYOffset == 0) {
                 setState(`rgba(0,0,0,0)`);
+                setDisplay("none")
             } else if (window.pageYOffset > 0 && window.pageYOffset < height ) {
                 if(location.pathname.includes("/artist/")){
-                    setState(`rgba(0,0,0,${window.pageYOffset / (height-200)})`);
+                    setState(`rgba(0,0,0,${window.pageYOffset / (height-300)})`);
+                    if(window.pageYOffset > 360){
+                        setDisplay("block")
+                    }
                 }else{
                     setState(`rgba(0,0,0,${window.pageYOffset / (height-100)})`);
                 }
             } else {
                 setState(`rgba(0,0,0,1)`);
+                // setDisplay("block")
             }
         }
         window.addEventListener("scroll", handleScroll);
@@ -86,7 +94,11 @@ export default function Header() {
                         case `/artist/${artistID}`:
 
                             return (
-                                <div>{artistName}</div>
+
+                                <div  className={style.headerInfo}>
+                                    <PlayCircleFilledWhiteIcon className={style.icon} style={{display: display}}/>
+                                    <div style={{display: display}} className={style.artistName}>{artistName}</div>
+                                </div>
                             )
                         case "/library":
                         case "/library/playlists":
@@ -115,21 +127,6 @@ export default function Header() {
                                                 Playlists
                                             </NavLink>
                                         </li>
-                                        {/*<li>*/}
-                                        {/*    <NavLink*/}
-                                        {/*        style={{*/}
-                                        {/*            textDecoration: "none",*/}
-                                        {/*            color: "#fff",*/}
-                                        {/*            padding: "10px",*/}
-                                        {/*            fontSize: "14px",*/}
-                                        {/*            fontWeight: "bold",*/}
-                                        {/*        }}*/}
-                                        {/*        className={(navData) => navData.isActive ? "headNavActive" : "" }*/}
-                                        {/*        to={`/library/podcasts`}*/}
-                                        {/*    >*/}
-                                        {/*        Podcasts*/}
-                                        {/*    </NavLink>*/}
-                                        {/*</li>*/}
                                         <li>
                                             <NavLink
                                                 style={{
