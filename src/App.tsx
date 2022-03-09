@@ -117,7 +117,7 @@ function App() {
           offset : 0
       })
           .then((data:any) => {
-              console.log("category"+data.body);
+              console.log(data.body);
           }, function(err:any) {
               console.log("Something went wrong!", err);
           });

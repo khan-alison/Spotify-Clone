@@ -54,5 +54,12 @@ export const getArtistID = (payload: any)=>{
     }
 }
 
+export const searchOnType = (payload: any)=>{
+    return{
+        type: 'SEARCH_ON_TYPE',
+        payload,
+    }
+}
+
 
 

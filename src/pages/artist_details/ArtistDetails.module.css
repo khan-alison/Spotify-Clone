@@ -40,7 +40,7 @@
 }
 
 .body{
-    padding: 40px 30px 4000px 30px;
+    padding: 40px 30px 100px 30px;
     position: relative;
 }
 
@@ -48,8 +48,30 @@
     color: #1cd760;
     font-size: 400% !important;
     justify-self: flex-end;
-    box-shadow: 0 1px 0px 0 black;
     border-radius: 50%;
+}
+
+.farIcon{
+    font-size: 100% !important;
+    margin-right: 10px;
+    display: none !important;
+    cursor: pointer;
+}
+
+.popular{
+    margin-bottom:40px;
+}
+
+.number{
+    display: flex;
+    width: 22.4px;
+    justify-content: center;
+}
+
+.playIcon{
+    font-size: 140% !important;
+    display: none !important;
+    cursor: pointer;
 }
 
 .icon:hover{
@@ -75,6 +97,8 @@
     cursor: pointer;
 }
 
+
+
 .popularContainer{
     margin-top: 20px;
     display: flex;
@@ -92,7 +116,19 @@
 
 .popularItem:hover{
     background-color: rgba(0,0,0,0.2);
+    cursor: pointer;
+}
 
+.popularItem:hover .farIcon{
+    display: block !important;
+}
+
+.popularItem:hover .playIcon{
+    display: block !important;
+}
+
+.popularItem:hover .number{
+    display: none;
 }
 
 .popularity {
@@ -114,6 +150,30 @@
     gap: 4px;
     width: 25%;
     justify-content: flex-end;
+}
+
+.seeMore{
+    width: 76px;
+    color: #B8B8B8;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.seeMore:hover{
+    color: white
+}
+
+.albumHeader{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.artistHeader{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 
@@ -154,6 +214,23 @@
     animation: changeBgColor 0.5s;
     animation-fill-mode: forwards;
     color: white;
+}
+
+.albumContainer{
+    display: flex;
+    gap:26px;
+    flex-wrap: wrap;
+    /*overflow-y: auto;*/
+}
+
+.artistContainer{
+    display: flex;
+    gap:26px;
+    flex-wrap: wrap;
+}
+
+.relatedArtists{
+    margin-top: 40px;
 }
 
 @media screen and (max-width: 1068px) {

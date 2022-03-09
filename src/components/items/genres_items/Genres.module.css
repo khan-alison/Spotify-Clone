@@ -1,0 +1,35 @@
+.genres {
+    width: 18%;
+    height: 200px;
+    background-color: purple;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    padding: 20px;
+}
+
+.genresIcon {
+    position: absolute;
+    transform: rotate(30deg);
+    right: -16px;
+    bottom: 0;
+}
+
+@media screen and (max-width: 1300px) {
+    .genres {
+        width: 22%;
+    }
+}
+
+@media screen and (max-width: 1164px) {
+    .genres {
+        width: 30%;
+    }
+}
+
+@media screen and (max-width: 860px) {
+    .genres {
+        width: 46%;
+    }
+}

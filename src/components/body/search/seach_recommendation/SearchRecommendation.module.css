@@ -1,0 +1,8 @@
+.genres {
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: space-between;/ */
+    gap: 26px;
+}
+

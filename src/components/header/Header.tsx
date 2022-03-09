@@ -5,13 +5,15 @@ import {useNavigate} from 'react-router-dom';
 import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
 import ArrowForwardIosRoundedIcon from '@mui/icons-material/ArrowForwardIosRounded';
 import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite';
-
-import {useSelector} from "react-redux";
+import SearchIcon from '@mui/icons-material/Search';
+import {useDispatch, useSelector} from "react-redux";
 import {Dropdown} from "react-bootstrap";
 import "./style.css"
+import {searchOnType} from "../../redux/actions/actions";
 
 
 export default function Header() {
+    const [search, setSearch] = useState("");
     const [state, setState] = useState('')
     const [headerHeight, setHeaderHeight] = useState(0)
     const navigate = useNavigate();
@@ -19,6 +21,7 @@ export default function Header() {
     const user = useSelector((state: any) => state.auth.user);
     const artistName = useSelector((state: any) => state.auth.artistName);
     const artistID = useSelector((state: any) => state.auth.artistID);
+    const dispatch = useDispatch();
     const [display,setDisplay] = useState("")
     const location = useLocation();
     const active = {
@@ -70,6 +73,11 @@ export default function Header() {
         navigate('/')
     }
 
+    const searchHandle = (event:any) => {
+        setSearch(event.target.value)
+        dispatch(searchOnType(event.target.value))
+    }
+
     return (
 
         <div className={style.container} ref={ref} style={{backgroundColor: `${state}`}}>
@@ -89,7 +97,21 @@ export default function Header() {
                         break
                         case "/search":
                             return (
-                                <div>{state}</div>
+                                    <div className={style.searchContainer}>
+                                        <label htmlFor="searchInput">
+                                            <SearchIcon className={style.searchIcon}/>
+                                        </label>
+                                        <input
+                                            id="searchInput"
+                                            type="text"
+                                            autoComplete="off"
+                                            className={style.searchInput}
+                                            placeholder="Artists, songs, or podcasts"
+                                            value={search}
+                                            onChange={searchHandle}
+                                        >
+                                        </input>
+                                    </div>
                             )
                         case `/artist/${artistID}`:
 

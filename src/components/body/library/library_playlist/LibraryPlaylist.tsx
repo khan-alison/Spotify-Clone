@@ -21,7 +21,6 @@ export default function LibraryPlaylist(){
             })
             .then((myPlaylist: any) => {
                 setSavedTrack(myPlaylist.body.items)
-                console.log(myPlaylist.body.items)
             });
     },[])
 

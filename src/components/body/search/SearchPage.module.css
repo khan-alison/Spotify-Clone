@@ -1,0 +1,150 @@
+.container{
+    width:100%;
+    height: 100% ;
+    background-image: linear-gradient(#222221, #000000);
+    padding: 100px 10px 100px 30px;
+    position: relative;
+    margin-top:  -80px;
+    color:white;
+}
+
+.resultsContainer{
+}
+
+.resultsHeader{
+    display: flex;
+    gap:30px;
+    margin-bottom:40px
+}
+
+.tracksResult{
+    flex:0.6;
+}
+
+.topResult{
+    flex:0.4
+}
+
+.topResultContainer{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: rgb(24, 24, 24);
+    border-radius: 8px;
+    padding:20px 20px 20px 20px ;
+    position: relative;
+}
+
+.topResultContainer:hover{
+    cursor: pointer;
+    animation: changeBgColor 0.4s;
+    animation-fill-mode: forwards;
+}
+
+.imageLayout{
+    background-size: cover;
+    width: 25%;
+    height: 110px;
+    border-radius: 50%;
+    /*background-color: red;*/
+}
+
+.image{
+    background-size: cover;
+    width: 25%;
+    height: auto;
+    border-radius: 50%;
+}
+
+.topResultContainer:hover .icon {
+    display: block;
+    animation: myAnimation 0.4s;
+    animation-fill-mode: forwards;
+}
+
+.icon {
+    display: none;
+    color: #1cd760;
+    font-size: 300% !important;
+    justify-self: flex-end;
+    position: absolute;
+    right: 16%;
+    bottom:10%;
+    transform: translateY(50%);
+    opacity: 0;
+    box-shadow: 0 1px 0px 0 black;
+    border-radius: 50%;
+}
+
+@keyframes changeBgColor {
+    from {
+        background-color: rgba(24, 24, 24, 0.3);
+    }
+    to {
+        background-color: rgba(40, 40, 40, 0.5);
+    }
+}
+
+@keyframes myAnimation {
+    from {
+        transform: translateY(50%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/*//sssss*/
+
+@media screen and (max-width: 1300px) {
+    .tracksResult{
+        flex:0.5;
+    }
+
+    .topResult{
+        flex:0.5
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .imageLayout{
+        height: 100px;
+    }
+
+    .resultsHeader{
+        flex-direction: column;
+    }
+
+    .tracksResult{
+        flex:0.3;
+    }
+
+    .topResult{
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 860px) {
+
+    .resultsHeader{
+        flex-direction: column;
+    }
+    .tracksResult{
+        flex:1;
+    }
+
+    .topResult{
+        flex:1
+    }
+}
+
+@media screen and (max-width: 790px) {
+
+}
+
+@media screen and (max-width: 700px) {
+
+}

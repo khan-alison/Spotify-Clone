@@ -11,13 +11,11 @@ export default function LibraryArtists  () {
     const [message, setMessage] = useState('')
 
     const callbackFunction = (childData:any) => {
-        console.log(childData)
         setMessage(childData)
     }
     useEffect(()=>{
         spotifyApi.getFollowedArtists({ limit : 50 })
             .then((data:any) => {
-                // console.log(data.body.artists.items.length)
                 setFlwLength(data.body.artists.items.length)
                 setFlwArtist(data.body.artists.items)
             }, function(err:any) {
@@ -30,7 +28,6 @@ export default function LibraryArtists  () {
             <div className={style.artistContainer}>
                  {
                 flwArtist.map((artist:any,index:number)=>{
-                    console.log(flwArtist.length)
                     return(
                         <ArtistItems
                             key={index}

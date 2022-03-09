@@ -8,7 +8,7 @@ const initialState={
     followedArtist:[],
     artistName:[],
     artistID:[],
-
+    searchMessage:[]
 }
 
 export const reducers = (state = initialState, action: any) => {
@@ -60,6 +60,11 @@ export const reducers = (state = initialState, action: any) => {
             return{
                 ...state,
                 artistID:action.payload
+            }
+        case 'SEARCH_ON_TYPE':
+            return {
+                ...state,
+                searchMessage:action.payload
             }
         default:
             return initialState;

@@ -14,13 +14,14 @@ interface ITrackItems {
     artistId: string;
     type:string;
     uri:string;
-    parentCallback:any;
+    parentCallback?:any;
+    isFar?:any
 }
 
 
 export default function ArtistItems(props:ITrackItems){
     const [flwArtist,setFlwArtist] = useState([]);
-    const [flwLength,setFlwLength] = useState(0)
+    const [flwLength,setFlwLength] = useState(0);
     const dispatch = useDispatch();
 
     const handleUnfollowClick = ()=>{
@@ -54,12 +55,17 @@ export default function ArtistItems(props:ITrackItems){
             <NavLink to={`/artist/${props.artistId}`}
                 // @ts-ignore
                      onClick={()=>handleClick(props.artistId,props.artistName)} style={{textDecoration:"none",color:"white"}} >
-                <img className={style.img} src={props.imageUrl} alt=""/>
+                {/*<img className={style.img} src={props.imageUrl} alt=""/>*/}
+                <div className={style.imgLayout}
+                    style={{backgroundImage: `url(${props.imageUrl})`}}
+                >
 
+                </div>
                 <h5 className={style.name}>{props.artistName}</h5>
                 <p className={style.description}>{props.type} </p>
             </NavLink>
             <HeartBrokenIcon
+                // style={{display:props.isFar ? "block":"none"}}
                 className={style.unlikeIcon}
                 onClick={handleUnfollowClick}
             />
