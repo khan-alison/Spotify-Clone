@@ -1,0 +1,125 @@
+.container{
+    display: flex;
+    align-items: center;
+    padding:6px 8px;
+    border-radius: 6px;
+    position: relative;
+}
+
+
+.container:hover{
+    background-color: rgba(126, 125, 125, 0.2);
+    cursor: pointer;
+}
+
+.infor{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap:12px;
+    flex:0.6;
+}
+
+.image{
+    height: 48px;
+}
+
+.content{
+    flex: 1
+}
+
+.name{
+    max-width: 400px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.description{
+    font-size: 13px;
+}
+
+.artist:hover{
+    text-decoration: underline !important;
+    color: white !important;
+}
+
+.container:hover .playIcon{
+    opacity:1;
+    color: white;
+    z-index: 1;
+}
+
+.container:hover .image{
+    opacity: 0.4;
+}
+
+.actions{
+    display: flex;
+    flex:0.4;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.farIcon{
+    font-size: 100% !important;
+    margin-right: 10px;
+    display: none !important;
+    cursor: pointer;
+}
+
+.container:hover .farIcon{
+    display: block !important;
+}
+
+.popularItem:hover .farIcon{
+    display: block !important;
+}
+
+.duration_ms{
+    width: 60px;
+}
+
+.userInfo:focus {
+    box-shadow: none !important;
+}
+
+.dropDownItems:hover {
+    animation: changeBgColor 0.5s;
+    animation-fill-mode: forwards;
+    color: white;
+}
+
+
+.dropDownItems{
+    color:white;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.dropDownItems:hover {
+    animation: changeBgColor 0.5s;
+    animation-fill-mode: forwards;
+    color: white;
+}
+
+.playIcon{
+    font-size: 200% !important;
+    position: absolute;
+    left: 2%;
+    opacity: 0;
+}
+
+
+
+
+
+@keyframes changeBgColor {
+    from {
+        background-color: rgb(61, 65, 68);
+    }
+    to {
+        background-color: rgba(127, 137, 145, 0.5);
+    }
+}
+

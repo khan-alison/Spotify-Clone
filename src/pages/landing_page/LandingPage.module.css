@@ -15,10 +15,12 @@
     min-width: 200px;
     padding:10px;
     background-color: black;
+    z-index: 2;
 }
 
 .body_right{
     flex:1;
+    z-index: 2;
 }
 
 .body_bottom{
@@ -29,4 +31,5 @@
     width: 100%;
     color: white;
     text-align: center;
+    z-index: 2;
 }

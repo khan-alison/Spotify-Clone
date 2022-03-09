@@ -92,7 +92,26 @@ export default function Search() {
                                     }
                             </div>
                             <div className={style.tracksResult}>
-                                <TracksResults/>
+                                <h4>
+                                    Tracks Result
+                                </h4>
+                                <div className={style.trackResultContainer}>
+                                    {
+                                        searchTrackResult.map((track:any,index:number)=>{
+                                            return (
+                                                <TracksResults
+                                                    imageUrl={track.album.images[0].url}
+                                                    name={track.name}
+                                                    uri={track.uri}
+                                                    durations={track.duration_ms}
+                                                    id={track.id}
+                                                    artists={track.artists}
+                                                />
+                                            )
+
+                                        })
+                                    }
+                                </div>
                             </div>
                         </div>
                         <div className={style.playlistResult}>
