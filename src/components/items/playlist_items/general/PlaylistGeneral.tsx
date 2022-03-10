@@ -2,7 +2,7 @@ import React from "react";
 import {NavLink} from "react-router-dom";
 import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite';
 import style from "./PlaylistGeneral.module.css"
-import {getImageUrl} from "../../../../redux/actions/actions";
+import {getImageUrl, getUri} from "../../../../redux/actions/actions";
 import {useDispatch, useSelector} from "react-redux";
 
 interface ITrackItems {
@@ -15,8 +15,10 @@ interface ITrackItems {
 
 
 export default function PlaylistGeneral(props:ITrackItems){
-    const handlePlayIconClick = ()=>{
-        console.log("a")
+    const data = useSelector((state: any) => state.auth)
+    const handlePlayIconClick = (uri:string)=>{
+        dispatch(getUri(uri))
+        console.log(data)
     }
     const dispatch = useDispatch()
     return(
@@ -34,7 +36,7 @@ export default function PlaylistGeneral(props:ITrackItems){
 
             </NavLink>
             <PlayCircleFilledWhiteIcon
-                onClick={handlePlayIconClick}
+                onClick={()=>handlePlayIconClick(props.playlistUri)}
                 className={style.icon}/>
         </div>
     )

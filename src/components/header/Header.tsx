@@ -57,6 +57,16 @@ export default function Header() {
                 } else {
                     setState(`rgba(0,0,0,${window.pageYOffset / (height - 100)})`);
                 }
+
+                if (location.pathname.includes("/playlist/")) {
+                    setState(`rgba(0,0,0,${window.pageYOffset / (height - 300)})`);
+                    if (window.pageYOffset > 360) {
+                        setDisplay("block")
+                    }
+                } else {
+                    setState(`rgba(0,0,0,${window.pageYOffset / (height - 100)})`);
+                }
+
             } else {
                 setState(`rgba(0, 0, 0, 1)`);
             }
@@ -141,18 +151,16 @@ export default function Header() {
                             )
                         case `/playlist/${playlistID}`:
                             return (
-                                <div>
+                                <div className={style.headerInfo}>
+                                    <PlayCircleFilledWhiteIcon
+                                        onClick={() => {
+                                            console.log(uri)
+                                            dispatch(getUri(uri))
+                                        }}
+                                        className={style.icon}
+                                        style={{display: display}}/>
+                                    <div style={{display: display}} className={style.artistName}>{playlistName}</div>
                                 </div>
-                                // <div className={style.headerInfo}>
-                                //     <PlayCircleFilledWhiteIcon
-                                //         onClick={() => {
-                                //             console.log(uri)
-                                //             dispatch(getUri(uri))
-                                //         }}
-                                //         className={style.icon}
-                                //         style={{display: display}}/>
-                                //     <div style={{display: display}} className={style.artistName}>{playlistName}</div>
-                                // </div>
                             )
                         case "/library":
                         case "/library/playlists":

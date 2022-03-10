@@ -18,20 +18,27 @@ export default function PlaylistItems(props: IPlaylistItems) {
     const dispatch = useDispatch()
     const data = useSelector((state: any) => state.auth)
     const handlePlayIconClick = () => {
-        console.log("a")
+        dispatch(getUri(props?.playlistUri))
+        console.log(data)
     }
     //
-    const getInfoHandle=() => {
-        dispatch(getImageUrl(props.imageUrl))
-        dispatch(getPlaylistName(props?.playlistName))
-        dispatch(getPlaylistID(props?.playlistId))
-        dispatch(getUri(props?.playlistUri))
+    const getInfoHandle=(url:string,name:string,id:string,uri:string) => {
+        // dispatch(getImageUrl(props.imageUrl))
+        // dispatch(getPlaylistName(props?.playlistName))
+        // dispatch(getPlaylistID(props?.playlistId))
+        // dispatch(getUri(props?.playlistUri))
+        dispatch(getImageUrl(url))
+        dispatch(getPlaylistName(name))
+        dispatch(getPlaylistID(id))
+        dispatch(getUri(uri))
     }
 
     return (
         <div className={style.container}>
             <NavLink
-                onClick={getInfoHandle}
+                onClick={()=>{
+                    getInfoHandle(props.imageUrl,props?.playlistName,props?.playlistId,props?.playlistUri)
+                }}
                 to={`/playlist/${props?.playlistId}`}
                 style={{textDecoration: "none", color: "white"}}
 

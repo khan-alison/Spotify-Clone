@@ -9,6 +9,7 @@ import {spotifyApi} from "../../spotify/api";
 import {getPlaylistID, getPlaylistName, getUri, getUserPlaylist} from "../../redux/actions/actions";
 import FastAverageColor from "fast-average-color";
 import PlayCircleFilledWhiteIcon from "@mui/icons-material/PlayCircleFilledWhite";
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 
 interface  IUserPlaylist{
@@ -39,12 +40,8 @@ export default function  PlaylistDetails(props:IUserPlaylist){
 
     useEffect(()=>{
         spotifyApi.getPlaylist(playListId.playlistID).then((playList: any) => {
-            // console.log(playList?.body)
             getUserPlaylistData(playList?.body);
             setPlaylistThumb(playList?.body?.images[0].url)
-            // dispatch(getPlaylistName(playList?.body?.name))
-            // dispatch(getPlaylistID(playList?.body?.id))
-            // dispatch(getUri(playList?.body?.uri))
         });
 
     },[playListId])
@@ -66,14 +63,12 @@ export default function  PlaylistDetails(props:IUserPlaylist){
             (
                 previousValue: any,
                 currentValue: any,
-                currentIndex: any,
-                array: any
             ) => {
                 return previousValue + currentValue;
             }
         );
 
-    const playIconClikedHandle = () =>{
+    const playIconClickedHandle = () =>{
         console.log(data)
         dispatch(getUri(userPlaylistData.uri))
     }
@@ -99,8 +94,19 @@ export default function  PlaylistDetails(props:IUserPlaylist){
                 <div className={style.body}>
                     <div className={style.artistOptions}>
                         <PlayCircleFilledWhiteIcon
-                            onClick={playIconClikedHandle}
+                            onClick={playIconClickedHandle}
                             className={style.icon}/>
+                    </div>
+                    <div className={style.artistInfo}>
+                        <div className={style.infoTitleBar}>
+                            <div className={style.number}>#</div>
+                            <div className={style.title}>TITLE</div>
+                            <div className={style.album}>ALBUM</div>
+                            <div className={style.dateAdded}>DATE ADDED</div>
+                            <div className={style.durationIcon}>
+                                AccessTimeIcon
+                            </div>
+                        </div>
                     </div>
                     {
                         userPlaylistData?.tracks?.items.map((item:any,index:number)=>{
