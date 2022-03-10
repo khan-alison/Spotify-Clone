@@ -8,7 +8,8 @@ const initialState={
     followedArtist:[],
     artistName:[],
     artistID:[],
-    searchMessage:[]
+    searchMessage:[],
+    uri:null
 }
 
 export const reducers = (state = initialState, action: any) => {
@@ -65,6 +66,12 @@ export const reducers = (state = initialState, action: any) => {
             return {
                 ...state,
                 searchMessage:action.payload
+            }
+        case 'GET_URI':
+            return{
+
+                ...state,
+                uri: action.payload,
             }
         default:
             return initialState;

@@ -61,5 +61,12 @@ export const searchOnType = (payload: any)=>{
     }
 }
 
+export const getUri =  (payload: any)=>{
+    return{
+        type: 'GET_URI',
+        payload,
+    }
+}
+
 
 

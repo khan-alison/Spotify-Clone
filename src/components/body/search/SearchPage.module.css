@@ -80,13 +80,55 @@
 
 .trackResultContainer{
     margin-top: 20px;
-    height: 272px;
+    height: 246px;
     overflow: auto;
     border-radius: 6px;
 }
 
 .icon:hover{
     font-size:360% !important;
+}
+
+.playlistContainer{
+    /*margin-top: 34px;*/
+    margin-bottom: 34px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+    /*overflow: auto;*/
+}
+
+.artistsContainer{
+    /*margin-top: 34px;*/
+    margin-bottom: 34px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+}
+
+.playlistResult{
+    width: 100%;
+}
+
+
+.seeMore{
+    width: 76px;
+    color: #B8B8B8;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.seeMore:hover{
+    color: white
+}
+
+.albumHeader{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 @keyframes changeBgColor {

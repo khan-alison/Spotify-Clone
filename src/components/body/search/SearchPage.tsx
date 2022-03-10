@@ -9,6 +9,9 @@ import ArtistsResults from "./search_results/artists_results/ArtistsResults";
 import PlaylistResults from "./search_results/playlist_results/PlaylistResults";
 import {NavLink} from "react-router-dom";
 import {getArtistID, getArtistName} from "../../../redux/actions/actions";
+import PlaylistItems from "../../items/playlist_items/home/PlaylistItems";
+import PlaylistGeneral from "../../items/playlist_items/general/PlaylistGeneral";
+import ArtistItems from "../../items/artist_items/ArtistItems";
 
 
 export default function Search() {
@@ -19,33 +22,44 @@ export default function Search() {
     const [searchTrackResult, setSearchTrackResult] = useState([]);
     const [searchArtistResult, setSearchArtistResult] = useState([]);
     const [searchPlaylistResult,setSearchPlaylistResult] = useState([])
+    const [showMorePlaylists,setShowMorePlaylists] = useState(false);
+    const [showMoreArtists,setShowMoreArtists] = useState(false);
+
+
     useEffect(() => {
-        setMessage(searchMessage + "")
+        setMessage(searchMessage +"")
         spotifyApi.searchTracks(searchMessage).then((data: any) => {
-            console.log("tracks")
-            console.log(data.body.tracks.items)
-            setSearchTrackResult(data.body.tracks.items)
+            setSearchTrackResult(data?.body?.tracks?.items)
         });
+
+    }, [searchMessage]);
+
+    useEffect(()=>{
         spotifyApi.searchArtists(searchMessage)
             .then(function (data: any) {
-                console.log("artist")
-                console.log(data.body.artists.items);
-                setTopSearch(data.body.artists.items.splice(0,1))
-                setSearchArtistResult(data.body.artists.items)
+                setTopSearch(data?.body?.artists?.items.splice(0,1))
+                if(showMoreArtists){
+                    setSearchArtistResult(data?.body?.artists?.items)
+                }else{
+                    setSearchArtistResult(data?.body?.artists?.items.splice(0,5))
+                }
             }, (err: any) => {
                 console.error(err);
             });
+    },[showMoreArtists,searchMessage])
 
+    useEffect(()=>{
         spotifyApi.searchPlaylists(searchMessage)
             .then((data:any) => {
-                console.log("playlist")
-                console.log(data.body.playlists);
-                setSearchPlaylistResult(data.body.playlists)
+                if (showMorePlaylists){
+                    setSearchPlaylistResult(data?.body?.playlists?.items)
+                }else{
+                    setSearchPlaylistResult(data?.body?.playlists?.items?.splice(0,5))
+                }
             }, (err:any) => {
                 console.error( err);
             });
-
-    }, [searchMessage]);
+    },[showMorePlaylists,searchMessage])
     const handlePlayIconClick = ()=>{
         console.log("a")
     }
@@ -53,6 +67,15 @@ export default function Search() {
     const handleClick = (id:string,name:string)=>{
         dispatch(getArtistID(id))
         dispatch(getArtistName(name))
+    }
+
+
+    const showMoreAlbumHandle =()=>{
+        setShowMorePlaylists(!showMorePlaylists)
+    }
+
+    const showMoreArtistsHandle=()=>{
+        setShowMoreArtists(!showMoreArtists)
     }
     return (
         <div className={style.container}>
@@ -73,7 +96,7 @@ export default function Search() {
                                                              onClick={()=>handleClick(item.id,item.name)}
                                                              style={{textDecoration:"none",color:"white"}}
                                                              >
-                                                        <img src={item.images[0].url} className={style.image} alt=""/>
+                                                        <img src={item?.images[0]?.url} className={style.image} alt=""/>
                                                         {/*<div className={style.imageLayout}*/}
                                                         {/*     style={{backgroundImage:`url(${item.images[0].url})`}}>*/}
                                                         {/*</div>*/}
@@ -96,11 +119,11 @@ export default function Search() {
                                     Tracks Result
                                 </h4>
                                 <div className={style.trackResultContainer}>
-                                    {
+                                    {   searchTrackResult && searchTrackResult.length>0 &&
                                         searchTrackResult.map((track:any,index:number)=>{
                                             return (
                                                 <TracksResults
-                                                    imageUrl={track.album.images[0].url}
+                                                    imageUrl={track?.album?.images[0]?.url}
                                                     name={track.name}
                                                     uri={track.uri}
                                                     durations={track.duration_ms}
@@ -115,10 +138,55 @@ export default function Search() {
                             </div>
                         </div>
                         <div className={style.playlistResult}>
-                            <PlaylistResults/>
+
+                            {/*<PlaylistResults/>*/}
+                            <div className={style.albumHeader}>
+                                <h4>
+                                    Playlist Result
+                                </h4>
+                                <div  className={style.seeMore} onClick={showMoreAlbumHandle}>
+                                    {showMorePlaylists ? "show less": "see more"}
+                                </div>
+                            </div>
+                            <div className={style.playlistContainer}>
+                                {  searchPlaylistResult && searchPlaylistResult.length >0 &&
+                                    searchPlaylistResult.map((playlist:any,index:number)=>{
+                                        return(
+                                            <PlaylistResults
+                                                playlistId={playlist.id}
+                                                playlistName={playlist.name}
+                                                playlistUri={playlist.uri}
+                                                imageUrl={playlist?.images[0]?.url}
+                                                description={playlist.description}
+                                            />
+                                        )
+                                    })
+                                }
+                            </div>
                         </div>
                         <div className={style.artistsResult}>
-                            <ArtistsResults/>
+
+                            <div className={style.albumHeader}>
+                                <h4>
+                                    Artist Result
+                                </h4>
+                                <div  className={style.seeMore} onClick={showMoreArtistsHandle}>
+                                    {showMoreArtists ? "show less": "see more"}
+                                </div>
+                            </div>
+                            <div className={style.artistsContainer}>
+                                {
+                                    searchArtistResult.map((artist:any,index:number)=>{
+                                        console.log(artist)
+                                        return(
+                                            <ArtistItems
+                                                artistName={artist.name}
+                                                imageUrl={artist?.images[0]?.url}
+                                                artistId={artist.id} type={artist.type} uri={artist.uri}/>
+                                        )
+                                    })
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>

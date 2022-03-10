@@ -78,6 +78,11 @@ export default function Header() {
         dispatch(searchOnType(event.target.value))
     }
 
+    const onBlur = () =>{
+        setSearch("")
+        // dispatch(searchOnType(""))
+    }
+
     return (
 
         <div className={style.container} ref={ref} style={{backgroundColor: `${state}`}}>
@@ -109,6 +114,7 @@ export default function Header() {
                                             placeholder="Artists, songs, or podcasts"
                                             value={search}
                                             onChange={searchHandle}
+                                            onBlur={onBlur}
                                         >
                                         </input>
                                     </div>
