@@ -5,11 +5,12 @@ import {useNavigate} from 'react-router-dom';
 import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
 import ArrowForwardIosRoundedIcon from '@mui/icons-material/ArrowForwardIosRounded';
 import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite';
+import ClearIcon from '@mui/icons-material/Clear';
 import SearchIcon from '@mui/icons-material/Search';
 import {useDispatch, useSelector} from "react-redux";
 import {Dropdown} from "react-bootstrap";
 import "./style.css"
-import {searchOnType} from "../../redux/actions/actions";
+import {getUri, searchOnType} from "../../redux/actions/actions";
 
 
 export default function Header() {
@@ -21,8 +22,11 @@ export default function Header() {
     const user = useSelector((state: any) => state.auth.user);
     const artistName = useSelector((state: any) => state.auth.artistName);
     const artistID = useSelector((state: any) => state.auth.artistID);
+    const playlistName = useSelector((state: any) => state.auth.playlistName);
+    const playlistID = useSelector((state: any) => state.auth.playlistID);
+    const uri = useSelector((state: any) => state.auth.uri);
     const dispatch = useDispatch();
-    const [display,setDisplay] = useState("")
+    const [display, setDisplay] = useState("")
     const location = useLocation();
     const active = {
         backgroundColor: "red !important",
@@ -30,36 +34,36 @@ export default function Header() {
         borderRadius: "4px",
     }
 
-
-
-
     useEffect(() => {
         let handleScroll: any
-        let height:number
-        if(location.pathname.includes("/artist/")){
+        let height: number
+        if (location.pathname.includes("/artist/")) {
             height = 500
-        }else{
-            height = headerHeight+120
+        } else if (location.pathname.includes("/playlist/")) {
+            height = 500
+        } else {
+            height = headerHeight + 120
         }
         handleScroll = () => {
             if (window.pageYOffset == 0) {
-                setState(`rgba(0,0,0,0)`);
+                setState(`rgba(0, 0, 0, 0)`);
                 setDisplay("none")
-            } else if (window.pageYOffset > 0 && window.pageYOffset < height ) {
-                if(location.pathname.includes("/artist/")){
-                    setState(`rgba(0,0,0,${window.pageYOffset / (height-300)})`);
-                    if(window.pageYOffset > 360){
+            } else if (window.pageYOffset > 0 && window.pageYOffset < height) {
+                if (location.pathname.includes("/artist/")) {
+                    setState(`rgba(0,0,0,${window.pageYOffset / (height - 300)})`);
+                    if (window.pageYOffset > 360) {
                         setDisplay("block")
                     }
-                }else{
-                    setState(`rgba(0,0,0,${window.pageYOffset / (height-100)})`);
+                } else {
+                    setState(`rgba(0,0,0,${window.pageYOffset / (height - 100)})`);
                 }
             } else {
-                setState(`rgba(0,0,0,1)`);
-                // setDisplay("block")
+                setState(`rgba(0, 0, 0, 1)`);
             }
         }
         window.addEventListener("scroll", handleScroll);
+        setSearch("")
+        dispatch(searchOnType(""))
     }, [location.pathname])
 
     const ref = useRef(null)
@@ -73,14 +77,14 @@ export default function Header() {
         navigate('/')
     }
 
-    const searchHandle = (event:any) => {
+    const searchHandle = (event: any) => {
         setSearch(event.target.value)
         dispatch(searchOnType(event.target.value))
     }
 
-    const onBlur = () =>{
+    const clearHandle = () => {
         setSearch("")
-        // dispatch(searchOnType(""))
+        dispatch(searchOnType(""))
     }
 
     return (
@@ -99,34 +103,56 @@ export default function Header() {
                             return (
                                 <div></div>
                             )
-                        break
+                            break
                         case "/search":
                             return (
-                                    <div className={style.searchContainer}>
-                                        <label htmlFor="searchInput">
-                                            <SearchIcon className={style.searchIcon}/>
-                                        </label>
-                                        <input
-                                            id="searchInput"
-                                            type="text"
-                                            autoComplete="off"
-                                            className={style.searchInput}
-                                            placeholder="Artists, songs, or podcasts"
-                                            value={search}
-                                            onChange={searchHandle}
-                                            onBlur={onBlur}
-                                        >
-                                        </input>
-                                    </div>
+                                <div className={style.searchContainer}>
+                                    <label htmlFor="searchInput">
+                                        <SearchIcon className={style.searchIcon}/>
+                                    </label>
+                                    <input
+                                        id="searchInput"
+                                        type="text"
+                                        autoComplete="off"
+                                        className={style.searchInput}
+                                        placeholder="Artists, songs, or podcasts"
+                                        value={search}
+                                        onChange={searchHandle}
+                                        // onBlur={onBlur}
+                                    >
+                                    </input>
+                                    <ClearIcon onClick={clearHandle}/>
+                                </div>
                             )
                         case `/artist/${artistID}`:
 
                             return (
 
-                                <div  className={style.headerInfo}>
-                                    <PlayCircleFilledWhiteIcon className={style.icon} style={{display: display}}/>
+                                <div className={style.headerInfo}>
+                                    <PlayCircleFilledWhiteIcon
+                                        className={style.icon}
+                                        style={{display: display}}
+                                        onClick={() => {
+                                            console.log(uri)
+                                            dispatch(getUri(uri))
+                                        }}/>
                                     <div style={{display: display}} className={style.artistName}>{artistName}</div>
                                 </div>
+                            )
+                        case `/playlist/${playlistID}`:
+                            return (
+                                <div>
+                                </div>
+                                // <div className={style.headerInfo}>
+                                //     <PlayCircleFilledWhiteIcon
+                                //         onClick={() => {
+                                //             console.log(uri)
+                                //             dispatch(getUri(uri))
+                                //         }}
+                                //         className={style.icon}
+                                //         style={{display: display}}/>
+                                //     <div style={{display: display}} className={style.artistName}>{playlistName}</div>
+                                // </div>
                             )
                         case "/library":
                         case "/library/playlists":

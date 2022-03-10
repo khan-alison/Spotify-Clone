@@ -41,68 +41,27 @@ export default function Home() {
                             />
                         );
                     })}
-                    {userPlaylist.map((playlist: any, ind: number) => {
-                        return (
-                            <PlaylistItems
-                                playlistId={playlist.id}
-                                playlistName={playlist.name}
-                                key={ind}
-                                imageUrl={playlist?.images[0]?.url}
-                                playlistUri={playlist.uri}
-                            />
-                        );
-                    })}
-                    {userPlaylist.map((playlist: any, ind: number) => {
-                        return (
-                            <PlaylistItems
-                                playlistId={playlist.id}
-                                playlistName={playlist.name}
-                                key={ind}
-                                imageUrl={playlist?.images[0]?.url}
-                                playlistUri={playlist.uri}
-                            />
-                        );
-                    })}
                 </div>
             </div>
             <div className={style.recentlyTracks}>
                 <h4>Recently Playlist</h4>
                 <div className={style.recentlyTracksItems}>
                     {
-                        recentlyPlayedTracks.map((item: any, index: any) => (
-                            <TrackItems
-                                key={index}
-                                imgUrl={item.track.album.images[0].url}
-                                title={item.track.name}
-                                content={""}
-                                id={""}
-                                artists={item.track.artists}
-                            />
-                        ))
-                    }
-                    {
-                        recentlyPlayedTracks.map((item: any, index: any) => (
-                            <TrackItems
-                                key={index}
-                                imgUrl={item.track.album.images[0].url}
-                                title={item.track.name}
-                                content={""}
-                                id={""}
-                                artists={item.track.artists}
-                            />
-                        ))
-                    }
-                    {
-                        recentlyPlayedTracks.map((item: any, index: any) => (
-                            <TrackItems
-                                key={index}
-                                imgUrl={item.track.album.images[0].url}
-                                title={item.track.name}
-                                content={""}
-                                id={""}
-                                artists={item.track.artists}
-                            />
-                        ))
+                        recentlyPlayedTracks.map((item: any, index: any) => {
+                            return (
+
+                                <TrackItems
+                                    key={index}
+                                    imgUrl={item?.track?.album?.images[0]?.url}
+                                    title={item?.track?.name}
+                                    content={""}
+                                    id={""}
+                                    artists={item?.track?.artists}
+                                    uri={item?.track?.uri}
+                                />
+                            )
+                            }
+                            )
                     }
                 </div>
             </div>

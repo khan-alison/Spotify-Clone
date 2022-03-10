@@ -7,7 +7,7 @@ import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import {getArtistID, getArtistName} from "../../redux/actions/actions";
+import {getArtistID, getArtistName, getUri} from "../../redux/actions/actions";
 import {spotifyApi} from "../../spotify/api";
 import {Dropdown} from 'react-bootstrap';
 import AlbumItems from "../../components/items/album_items/AlbumItems";
@@ -23,6 +23,7 @@ function ArtistDetails(props: IArtistDetails) {
     let artistId = useParams().artistID
     const dispatch = useDispatch();
     const data = useSelector((state: any) => state.auth);
+    const uri = useSelector((state: any) => state.auth.uri);
     const [headerHeight, setHeaderHeight] = useState(0)
     const [artistData, setArtistData] = useState<any>("");
     const [relatedArtist,setRelatedArtist] = useState([])
@@ -38,6 +39,7 @@ function ArtistDetails(props: IArtistDetails) {
     const [seeMore,setSeeMore] = useState(false);
     const [showMoreAlbums,setShowMoreAlbums] = useState(false);
     const [showMoreArtists,setShowMoreArtists] = useState(false);
+
     const ref = useRef(null);
 
     function msToTime(ms: any) {
@@ -73,6 +75,10 @@ function ArtistDetails(props: IArtistDetails) {
 
         spotifyApi.getArtist(artistId).then((artist: any) => {
             setArtistData(artist);
+            console.log(artist.body)
+            dispatch(getArtistID(artist.body.id))
+            dispatch(getArtistName(artist.body.name))
+            dispatch(getUri(artist.body.uri))
             setArtistThumb(artist?.body?.images[0]?.url)
         });
 
@@ -224,7 +230,11 @@ function ArtistDetails(props: IArtistDetails) {
             </div>
             <div className={style.body} style={{backgroundImage: `linear-gradient(${bgColor},#222221)`}}>
                 <div className={style.artistOptions}>
-                    <PlayCircleFilledWhiteIcon className={style.icon}/>
+                    <PlayCircleFilledWhiteIcon className={style.icon} onClick={()=>{
+                       dispatch(getUri(uri))
+                        console.log(data)
+
+                    }}/>
                     <div
                         onClick={handleUnfollowClick}
                         className={style.flwBtn}

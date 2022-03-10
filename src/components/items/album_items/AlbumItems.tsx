@@ -20,11 +20,11 @@ export default function AlbumItems(props:ITrackItems){
     return(
         <div className={style.container}>
             <NavLink to="/" style={{textDecoration:"none",color:"white"}} >
-                <img className={style.img} src={props.imgUrl} alt=""/>
+                <img className={style.img} src={props?.imgUrl} alt=""/>
 
-                <h5 className={style.name}>{props.name}</h5>
-                {/*<div>{props.id}</div>*/}
-                <p className={style.description}>{props.artists.map((item:any,index:number)=>(
+                <h5 className={style.name}>{props?.name}</h5>
+                {/*<div>{props?.id}</div>*/}
+                <p className={style.description}>{props?.artists.map((item:any,index:number)=>(
                     <NavLink
                         key={index}
                         to={`/artist/${item.id}`}
@@ -32,12 +32,9 @@ export default function AlbumItems(props:ITrackItems){
                         style={{textDecoration:"none",color:"#A7A7A7"}}
                     >
                         {
-                            (index<props.artists.length-1) ?
+                            (index<props?.artists.length-1) ?
                                 item.name + ", " :item.name
-                            // item.name
                         }
-
-
                     </NavLink>
 
                 ))}</p>

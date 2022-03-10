@@ -8,10 +8,10 @@ interface IGenresProp {
 
 export default function Genres(props: IGenresProp) {
     return (
-        <div className={style.genres} style={{ backgroundColor: props.bgColor }}>
+        <div className={style.genres} style={{ backgroundColor: props?.bgColor }}>
             <h3>{props.title}</h3>
             <img
-                src={props.icon}
+                src={props?.icon}
                 alt=""
                 style={{ width: "50%", height: "50%" }}
                 className={style.genresIcon}

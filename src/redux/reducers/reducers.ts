@@ -8,8 +8,11 @@ const initialState={
     followedArtist:[],
     artistName:[],
     artistID:[],
+    playlistName:[],
+    playlistID:[],
     searchMessage:[],
-    uri:null
+    uri:null,
+    imageUrl:[],
 }
 
 export const reducers = (state = initialState, action: any) => {
@@ -62,6 +65,16 @@ export const reducers = (state = initialState, action: any) => {
                 ...state,
                 artistID:action.payload
             }
+        case 'GET_PLAYLIST_NAME':
+            return{
+                ...state,
+                playlistName:action.payload
+            }
+        case 'GET_PLAYLIST_ID':
+            return{
+                ...state,
+                playlistID:action.payload
+            }
         case 'SEARCH_ON_TYPE':
             return {
                 ...state,
@@ -72,6 +85,11 @@ export const reducers = (state = initialState, action: any) => {
 
                 ...state,
                 uri: action.payload,
+            }
+        case 'GET_IMAGE_URL':
+            return{
+                ...state,
+                imageUrl: action.payload,
             }
         default:
             return initialState;

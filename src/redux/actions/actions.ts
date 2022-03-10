@@ -54,6 +54,21 @@ export const getArtistID = (payload: any)=>{
     }
 }
 
+
+export const getPlaylistName = (payload: any)=>{
+    return{
+        type: 'GET_PLAYLIST_NAME',
+        payload,
+    }
+}
+
+export const getPlaylistID = (payload: any)=>{
+    return{
+        type: 'GET_PLAYLIST_ID',
+        payload,
+    }
+}
+
 export const searchOnType = (payload: any)=>{
     return{
         type: 'SEARCH_ON_TYPE',
@@ -64,6 +79,13 @@ export const searchOnType = (payload: any)=>{
 export const getUri =  (payload: any)=>{
     return{
         type: 'GET_URI',
+        payload,
+    }
+}
+
+export const getImageUrl =  (payload: any)=>{
+    return{
+        type: 'GET_IMAGE_URL',
         payload,
     }
 }

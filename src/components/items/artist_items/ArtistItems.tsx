@@ -4,9 +4,8 @@ import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite
 import style from "./ArtistItems.module.css"
 import HeartBrokenIcon from '@mui/icons-material/HeartBroken';
 import {spotifyApi} from "../../../spotify/api";
-import {getArtistID, getArtistName} from "../../../redux/actions/actions";
+import {getArtistID, getArtistName, getUri} from "../../../redux/actions/actions";
 import {useDispatch} from "react-redux";
-import {log} from "util";
 
 interface ITrackItems {
     artistName: string;
@@ -27,7 +26,6 @@ export default function ArtistItems(props:ITrackItems){
     const handleUnfollowClick = ()=>{
         spotifyApi.getFollowedArtists({ limit : 30 })
             .then((data:any) => {
-                // console.log(data.body.artists.items.length)
                 setFlwArtist(data.body.artists.items)
                 setFlwLength(data.body.artists.items.length)
                 props.parentCallback(`${flwLength}`)
@@ -41,9 +39,10 @@ export default function ArtistItems(props:ITrackItems){
             });
     }
 
-    const handleClick = (id:string,name:string)=>{
+    const handleClick = (id:string,name:string,uri:string)=>{
         dispatch(getArtistID(id))
         dispatch(getArtistName(name))
+        dispatch(getUri(uri))
     }
 
     const handlePlayIconClick = ()=>{
@@ -52,20 +51,19 @@ export default function ArtistItems(props:ITrackItems){
 
     return(
         <div className={style.container} >
-            <NavLink to={`/artist/${props.artistId}`}
+            <NavLink to={`/artist/${props?.artistId}`}
                 // @ts-ignore
-                     onClick={()=>handleClick(props.artistId,props.artistName)} style={{textDecoration:"none",color:"white"}} >
+                     onClick={()=>handleClick(props?.artistId,props?.artistName,props?.uri)} style={{textDecoration:"none",color:"white"}} >
                 {/*<img className={style.img} src={props.imageUrl} alt=""/>*/}
                 <div className={style.imgLayout}
-                    style={{backgroundImage: `url(${props.imageUrl})`}}
+                    style={{backgroundImage: `url(${props?.imageUrl})`}}
                 >
 
                 </div>
-                <h5 className={style.name}>{props.artistName}</h5>
-                <p className={style.description}>{props.type} </p>
+                <h5 className={style.name}>{props?.artistName}</h5>
+                <p className={style.description}>{props?.type} </p>
             </NavLink>
             <HeartBrokenIcon
-                // style={{display:props.isFar ? "block":"none"}}
                 className={style.unlikeIcon}
                 onClick={handleUnfollowClick}
             />
