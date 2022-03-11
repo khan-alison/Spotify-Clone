@@ -55,11 +55,11 @@
 
 .headerDescription{
     font-size: 16px;
-    color:#C7B7B7;
+    color: #cbc6c6;
 }
 
 .body{
-    padding:30px 0px 15000px
+    padding:30px 0px 100px
 }
 
 .icon {
@@ -81,6 +81,7 @@
     font-size: 12px;
     justify-content: center;
     align-items: center;
+    z-index: 1;
 }
 
 .artistOptions{
@@ -88,24 +89,50 @@
 }
 
 .number{
-    flex: 5%;
+    flex: 3%;
+    display: flex;
+    justify-content: flex-start;
 }
 
+
 .trackNum{
-    flex: 5%;
+    flex: 3%;
+    display: flex;
+    justify-content: flex-start;
+
 }
 
 .title{
-    flex:40%
+    flex:42%
+}
+
+.trackContent{
+    flex:42%;
+    display: flex;
+    gap:20px
+
+}
+
+.img{
+    height: 44px;
+}
+
+.description{
+    margin: 0;
 }
 
 .trackName{
-    flex:40%;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
+    padding-right: 30px;
+}
+
+.trackName >p {
+    width: 70%;
+
 }
 
 .album{
@@ -114,24 +141,45 @@
 
 .trackAlbum{
     flex:25%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    padding-right: 30px;
 }
 
+/*.trackAlbum >p {*/
+/*    width: 70%;*/
+/*    white-space: nowrap;*/
+/*    overflow: hidden;*/
+/*    text-overflow: ellipsis;*/
+/*}*/
+
 .dateAdded{
-    flex:25%;
+    flex:22%;
+    display: flex;
+    justify-content: center;
 }
 
 .trackAdded{
-    flex:25%;
-
+    flex:22%;
+    display: flex;
+    justify-content: center;
 }
 
 
 .durationIcon{
-    flex:5%;
+    flex:8%;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .trackDur{
-    flex:5%;
+    flex:8%;
+    min-width: 30px;
+    display: flex;
+    justify-content: center;
 }
 
 .durIcon{
@@ -141,7 +189,10 @@
 }
 
 .trackItems{
-    padding:10px 40px;
+    padding:10px 20px;
+    gap:20px;
+    font-size: 14px;
+
 }
 
 .artistInfo{
@@ -151,6 +202,40 @@
 
 .trackItem{
     display: flex;
+    padding: 4px 20px;
+    border-radius: 6px;
+    justify-content: center;
+    align-items: center;
+}
+
+.trackItem:hover{
+    background-color: red;
+}
+
+.recommendationContainer{
+    padding: 40px;
+}
+
+.refresh{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 30px;
+}
+
+.refBtn{
+    color: white;
+    display: flex;
+    justify-content: center;
+    border-radius: 30px;
+    width: 100px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.refBtn:hover{
+    color: #d5d2d2;
+    transform: scale(1.01);
 }
 
 
@@ -160,6 +245,15 @@
         font-weight: bold;
         font-size: 70px;
         text-shadow: 1px 1px 2px black;
+    }
+
+    .album{
+       display: none;
+    }
+
+    .trackAlbum{
+        display: none;
+
     }
 }
 

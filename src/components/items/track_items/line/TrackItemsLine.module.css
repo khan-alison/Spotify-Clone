@@ -1,0 +1,141 @@
+.trackNum{
+    flex: 3%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+
+.trackContent{
+    flex:42%;
+    display: flex;
+    gap:20px;
+    align-items: center;
+
+}
+.playIcon{
+    font-size: 200% !important;
+    position: absolute;
+    left: 0.89%;
+    opacity: 0;
+}
+
+.trackItem:hover .trackNum{
+    opacity: 0;
+}
+
+.trackItem:hover .playIcon{
+    opacity:1;
+    color: white;
+    /*z-index: 1;*/
+}
+
+.img{
+    height: 40px;
+}
+
+.description{
+    margin: 0;
+}
+
+.trackName{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    padding-right: 30px;
+}
+
+.trackName >p {
+    width: 70%;
+
+}
+
+.album{
+    flex:25%;
+}
+
+.trackAlbum{
+    flex:25%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    padding-right: 30px;
+}
+
+.dateAdded{
+    flex:22%;
+    display: flex;
+    justify-content: center;
+}
+
+.trackAdded{
+    flex:22%;
+    display: flex;
+    justify-content: center;
+}
+
+
+
+
+.trackDur{
+    flex:8%;
+    min-width: 30px;
+    display: flex;
+    justify-content: flex-end   ;
+    align-items: center;
+}
+
+.durIcon{
+    font-size: 150% !important;
+    display: flex;
+    align-items: center;
+}
+
+.trackItems{
+    padding:10px 40px;
+    gap:20px;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.artistInfo{
+    height: 40px;
+    line-height: 40px;
+}
+
+.trackItem{
+    position: relative;
+    display: flex;
+    padding: 4px 20px;
+    border-radius: 6px;
+    justify-content: center;
+    align-items: center;
+}
+
+.farIcon{
+    font-size: 100% !important;
+    margin-right: 10px;
+    display: none !important;
+    cursor: pointer;
+}
+
+.trackItem:hover .farIcon{
+    display: block !important;
+}
+
+.trackItem:hover{
+    background-color: rgba(96, 95, 95, 0.3);
+}
+
+.artist:hover{
+    text-decoration: underline !important;
+    color: white !important;
+}
+
+.album:hover{
+    text-decoration: underline !important;
+    color: white !important;
+}

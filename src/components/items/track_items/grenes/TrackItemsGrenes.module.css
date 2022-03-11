@@ -29,6 +29,7 @@
     text-overflow: ellipsis;
 }
 
+
 .description{
     font-size: 13px;
 }
@@ -65,6 +66,7 @@
     color: #18e160;
     /*background-color: rgba(80, 78, 78, 0.4);*/
 }
+
 
 @keyframes myAnimation {
     from {

@@ -1,10 +1,8 @@
 import React, {useEffect, useMemo, useRef, useState} from "react";
 import style from "./Home.module.css"
 import {useDispatch, useSelector} from "react-redux";
-import {dividerClasses} from "@mui/material";
 import PlaylistItems from "../../items/playlist_items/home/PlaylistItems";
-import TrackItems from "../../items/track_items/TrackItems";
-import {NavLink} from "react-router-dom";
+import TrackItemsGrenes from "../../items/track_items/grenes/TrackItemsGrenes";
 
 export default function Home() {
     const dispatch = useDispatch();
@@ -50,7 +48,7 @@ export default function Home() {
                         recentlyPlayedTracks.map((item: any, index: any) => {
                             return (
 
-                                <TrackItems
+                                <TrackItemsGrenes
                                     key={index}
                                     imgUrl={item?.track?.album?.images[0]?.url}
                                     title={item?.track?.name}

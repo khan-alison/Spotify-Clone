@@ -1,0 +1,185 @@
+import React, {useState} from "react";
+import {NavLink} from "react-router-dom";
+import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite';
+import style from "./TrackItemsLine.module.css"
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+
+import {useDispatch, useSelector} from "react-redux";
+import {getArtistID, getArtistName, getUri} from "../../../../redux/actions/actions";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import {spotifyApi} from "../../../../spotify/api";
+import {Dropdown} from "react-bootstrap";
+
+interface ITrackItems {
+    imgUrl: string;
+    title: string;
+    album: string;
+    albumId:string;
+    id: string;
+    index:number;
+    artists:[];
+    uri:string;
+    ms_duration:string;
+    date_added:string;
+
+}
+
+
+export default function TrackItemsLine(props:ITrackItems){
+    const dispatch = useDispatch();
+    const data = useSelector((state:any)=>state.auth)
+    const [isFar, setFar] = useState(false);
+
+    const handleClick = (id: any) => {
+        spotifyApi.containsMySavedTracks([id])
+            .then((data: any) => {
+
+                // An array is returned, where the first element corresponds to the first track ID in the query
+                var trackIsInYourMusic = data.body[0];
+
+                if (trackIsInYourMusic) {
+                    setFar(true)
+                } else {
+                    setFar(false)
+                }
+            }, (err: any) => {
+                console.log('Something went wrong!', err);
+            });
+    }
+    const handleArtistClick = (id:string,name:string)=>{
+        dispatch(getArtistID(id))
+        dispatch(getArtistName(name))
+    }
+
+    const handlePlayIconClick = (uri:any)=>{
+        dispatch(getUri(uri))
+        console.log(uri)
+        console.log(data)
+    }
+    const handlePlay = () => {
+        dispatch(getUri(props.uri))
+        console.log(data)
+    }
+
+    const unlikedHandle = (id: string) => {
+        spotifyApi.removeFromMySavedTracks([id])
+            .then(function (data: any) {
+            }, function (err: any) {
+                console.log('Something went wrong!', err);
+            });
+    }
+
+    const likeHandle = (id: string) => {
+        spotifyApi.addToMySavedTracks([id])
+            .then(function (data: any) {
+            }, function (err: any) {
+                console.log('Something went wrong!', err);
+            });
+    }
+    return(
+        <div className={style.trackItem}>
+            <PlayArrowIcon className={style.playIcon} onClick={handlePlay}/>
+            <div className={style.trackNum}>{props.index + 1}</div>
+            <div className={style.trackContent}>
+                <img src={props.imgUrl} alt="" className={style.img}/>
+                <div className={style.trackInfo}>
+                    <div className={style.trackName}>
+                        {props.title}
+                    </div>
+                    <p className={style.description}>{props.artists.map((item:any,ind:number)=>{
+                        return (
+                            <NavLink
+                                key={ind}
+                                to={`/artist/${item.id}`}
+                                className={style.artist}
+                                onClick={()=>handleArtistClick(item?.id,item?.name)}
+                                style={{textDecoration:"none",color:"#A7A7A7"}}
+                            >
+                                {
+                                    (ind<props.artists.length-1) ?
+                                        item.name + ", "
+                                        :
+                                        item.name
+                                }
+                            </NavLink>
+                        )
+                    })}</p>
+                </div>
+            </div>
+            <div className={style.trackAlbum}>
+                <NavLink
+                    className={style.album}
+                    to={`/album/${props.albumId}`}
+                    style={{textDecoration:"none",color:"#A7A7A7"}}
+                >
+                    {props.album}
+                </NavLink>
+            </div>
+            <div className={style.trackAdded}>{props.date_added}</div>
+            <div className={style.trackDur}>
+                {isFar ? <FavoriteIcon
+                        onMouseDown={() => unlikedHandle(props.id)}
+                        onMouseUp={() => handleClick(props.id)}
+                        className={style.farIcon}/> :
+                    <FavoriteBorderIcon
+                        onMouseUp={() => handleClick(props.id)}
+                        onMouseDown={() => likeHandle(props.id)}
+                        className={style.farIcon}/>}
+                <div>
+                    {props.ms_duration}
+                </div>
+                <Dropdown style={{display: "flex"}}>
+                    <Dropdown.Toggle
+                        className={style.userInfo}
+                        style={{
+                            display: "flex",
+                            background: "none",
+                            border: "none",
+                            boxShadow: "none",
+                        }}
+                        variant="success"
+                        id="dropdown-basic"
+                    ></Dropdown.Toggle>
+
+                    <Dropdown.Menu style={{backgroundColor: "#333"}}>
+                        <Dropdown.Item className={style.dropDownItems}>
+                            <NavLink
+                                style={{textDecoration: "none", color: "grey"}}
+                                to={`/artist`}
+                                onClick={() => {
+                                    console.log("b")
+                                    // props.spotify
+                                    //     .getArtistAlbums(item?.track?.artists[0]?.id, {
+                                    //         limit: 5,
+                                    //     })
+                                    //     .then((albums: any) => {
+                                    //         dispatch(getArtistAlbums(albums.body.items));
+                                    //     });
+                                    // dispatch(getArtistId(item?.track?.artists[0]?.id));
+                                }}
+                            >
+                                Go to artist
+                            </NavLink>
+                        </Dropdown.Item>
+                        <Dropdown.Item className={style.dropDownItems}>
+                            <NavLink
+                                style={{textDecoration: "none", color: "grey"}}
+                                to={`/album`}
+                                onClick={() => {
+                                    console.log("a");
+                                    // dispatch(getArtistId(item.track.album.artists[0].id));
+                                    // dispatch(
+                                    //     getAlbumImage(item.track.album.images[0].url)
+                                    // );
+                                }}
+                            >
+                                Go to album
+                            </NavLink>
+                        </Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
+            </div>
+        </div>
+    )
+}

@@ -1,9 +1,9 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
 import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite';
-import style from "./TrackItems.module.css"
-import {getArtistID, getArtistName, getUri} from "../../../redux/actions/actions";
+import style from "./TrackItemsGrenes.module.css"
 import {useDispatch, useSelector} from "react-redux";
+import {getArtistID, getArtistName, getUri} from "../../../../redux/actions/actions";
 
 interface ITrackItems {
     imgUrl: string;
@@ -15,7 +15,7 @@ interface ITrackItems {
 }
 
 
-export default function TrackItems(props:ITrackItems){
+export default function TrackItemsGrenes(props:ITrackItems){
     const dispatch = useDispatch();
     const data = useSelector((state:any)=>state.auth)
 

@@ -52,6 +52,7 @@ export default function LibraryPlaylist(){
                         </div>
                         {
                             userPlaylist.map((playlist:any,index:any)=>{
+                                console.log(playlist)
                                     return(
                                         <PlaylistGeneral
                                             key={index}

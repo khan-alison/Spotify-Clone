@@ -54,6 +54,9 @@ export default function Header() {
                     if (window.pageYOffset > 360) {
                         setDisplay("block")
                     }
+                    if(window.pageYOffset < 300){
+                        setDisplay("none")
+                    }
                 } else {
                     setState(`rgba(0,0,0,${window.pageYOffset / (height - 100)})`);
                 }
@@ -62,6 +65,9 @@ export default function Header() {
                     setState(`rgba(0,0,0,${window.pageYOffset / (height - 300)})`);
                     if (window.pageYOffset > 360) {
                         setDisplay("block")
+                    }
+                    if(window.pageYOffset < 300){
+                        setDisplay("none")
                     }
                 } else {
                     setState(`rgba(0,0,0,${window.pageYOffset / (height - 100)})`);
