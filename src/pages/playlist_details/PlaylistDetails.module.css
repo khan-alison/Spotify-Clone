@@ -59,7 +59,7 @@
 }
 
 .body{
-    padding:30px 30px 15000px
+    padding:30px 0px 15000px
 }
 
 .icon {
@@ -76,11 +76,84 @@
 
 .infoTitleBar{
     display: flex;
-    position: sticky;
-    top:-1px;
-    background-color: red;
-    z-index: 1;
+    border-bottom: 1px solid #333333;
+    padding:0 40px;
+    font-size: 12px;
+    justify-content: center;
+    align-items: center;
 }
+
+.artistOptions{
+    padding:10px 30px;
+}
+
+.number{
+    flex: 5%;
+}
+
+.trackNum{
+    flex: 5%;
+}
+
+.title{
+    flex:40%
+}
+
+.trackName{
+    flex:40%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.album{
+    flex:25%;
+}
+
+.trackAlbum{
+    flex:25%;
+}
+
+.dateAdded{
+    flex:25%;
+}
+
+.trackAdded{
+    flex:25%;
+
+}
+
+
+.durationIcon{
+    flex:5%;
+}
+
+.trackDur{
+    flex:5%;
+}
+
+.durIcon{
+    font-size: 150% !important;
+    display: flex;
+    align-items: center;
+}
+
+.trackItems{
+    padding:10px 40px;
+}
+
+.artistInfo{
+    height: 40px;
+    line-height: 40px;
+}
+
+.trackItem{
+    display: flex;
+}
+
+
 
 @media screen and (max-width: 1068px) {
     .headerName {
