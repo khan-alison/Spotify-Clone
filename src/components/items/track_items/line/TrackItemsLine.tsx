@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {NavLink} from "react-router-dom";
 import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite';
 import style from "./TrackItemsLine.module.css"
@@ -30,6 +30,20 @@ export default function TrackItemsLine(props:ITrackItems){
     const dispatch = useDispatch();
     const data = useSelector((state:any)=>state.auth)
     const [isFar, setFar] = useState(false);
+
+    useEffect(()=>{
+        spotifyApi.containsMySavedTracks([props?.id])
+            .then((data: any) => {
+                var trackIsInYourMusic = data.body[0];
+                if (trackIsInYourMusic) {
+                    setFar(true)
+                } else {
+                    setFar(false)
+                }
+            }, (err: any) => {
+                console.log('Something went wrong!', err);
+            });
+    },[])
 
     const handleClick = (id: any) => {
         spotifyApi.containsMySavedTracks([id])

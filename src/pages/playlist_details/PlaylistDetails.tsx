@@ -39,12 +39,13 @@ export default function PlaylistDetails(props: IUserPlaylist) {
     const [position, setPosition] = useState<any>("")
     const [offsetTop, setOffsetTop] = useState(0)
     const [clientHeight, setClientHeigt] = useState(0)
-    const [recommendation,setRecommendations] = useState([])
-    const [refresh,setRefresh] = useState(false)
-    const [findMore,setFindMore] = useState(false)
+    const [recommendation, setRecommendations] = useState([])
+    const [refresh, setRefresh] = useState(false)
+    const [findMore, setFindMore] = useState(false)
+    const [playListLength, setPlaylistLenghth] = useState(0)
     const ref = useRef(null);
 
-    const handleClick = (id:string,name:string)=>{
+    const handleClick = (id: string, name: string) => {
         dispatch(getArtistID(id))
         dispatch(getArtistName(name))
     }
@@ -61,11 +62,12 @@ export default function PlaylistDetails(props: IUserPlaylist) {
         else return days + " Days";
     }
 
-    function formatDate(date:any){
-        function monthName(mon:any) {
+    function formatDate(date: any) {
+        function monthName(mon: any) {
             return ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][mon - 1];
         }
-        const time= date.toString().slice(0,10).split("-")
+
+        const time = date.toString().slice(0, 10).split("-")
         const year = time[0]
         const month = time[1]
         const day = time[2]
@@ -76,14 +78,11 @@ export default function PlaylistDetails(props: IUserPlaylist) {
         spotifyApi.getPlaylist(playListId.playlistID).then((playList: any) => {
             getUserPlaylistData(playList?.body);
             setPlaylistThumb(playList?.body?.images[0].url)
-
+            setPlaylistLenghth(playList?.body?.tracks?.total)
         });
+    }, [playListId, playListLength])
 
-
-
-    }, [playListId])
-
-    useEffect(()=>{
+    useEffect(() => {
         spotifyApi.getPlaylist(playListId.playlistID).then((playList: any) => {
             dispatch(getPlaylistName(playList?.body?.name))
             dispatch(getPlaylistID(playList?.body?.id))
@@ -93,22 +92,22 @@ export default function PlaylistDetails(props: IUserPlaylist) {
                 seed_artists: [playList?.body?.tracks?.items[0]?.track?.artists[0]?.id, playList?.body?.tracks?.items[1]?.track?.artists[0]?.id],
                 min_popularity: 50
             })
-                .then(function(data:any) {
+                .then(function (data: any) {
                     let recommendations = data.body;
                     console.log(recommendations.tracks);
-                    setRecommendations(recommendations.tracks.splice(0,10))
-                }, function(err:any) {
+                    setRecommendations(recommendations.tracks.splice(0, 10))
+                }, function (err: any) {
                     console.log("Something went wrong!", err);
                 });
         });
-    },[refresh])
+    }, [refresh])
 
     useEffect(() => {
         let handleScroll = () => {
             if (window.pageYOffset == 0 && window.pageYOffset < 336) {
                 setPosition("static")
                 setBackground("rgba(0,0,0,0)")
-            } else if (window.pageYOffset >= 336 && window.pageYOffset <= (clientHeight + offsetTop-180)) {
+            } else if (window.pageYOffset >= 336 && window.pageYOffset <= (clientHeight + offsetTop - 180)) {
                 setPosition("sticky")
                 setBackground("rgba(33,33,33,1)")
             } else {
@@ -118,8 +117,8 @@ export default function PlaylistDetails(props: IUserPlaylist) {
             }
         }
         window.addEventListener("scroll", handleScroll);
-    },[clientHeight,offsetTop])
-    useEffect(()=>{
+    }, [clientHeight, offsetTop])
+    useEffect(() => {
         // @ts-ignore
         setOffsetTop(ref?.current?.offsetTop)
         // @ts-ignore
@@ -151,14 +150,25 @@ export default function PlaylistDetails(props: IUserPlaylist) {
         dispatch(getUri(userPlaylistData.uri))
     }
 
-    const refreshHandle = ()=>{
+    const refreshHandle = () => {
         setRefresh(!refresh)
         console.log(refresh)
     }
 
-    const findMoreHandle = ()=>{
+    const findMoreHandle = () => {
         setFindMore(!findMore)
         console.log(findMore)
+    }
+
+    const callbackFunction = (childData: any) => {
+        // setMessage(childData)
+        console.log(childData)
+        setPlaylistLenghth(childData)
+        // spotifyApi.getPlaylist(playListId.playlistID).then((playList: any) => {
+        //     getUserPlaylistData(playList?.body);
+        //     setPlaylistThumb(playList?.body?.images[0].url)
+        //     setPlaylistLenghth(playList?.body?.tracks?.total)
+        // });
     }
 
 
@@ -174,7 +184,7 @@ export default function PlaylistDetails(props: IUserPlaylist) {
                     <div className={style.headerDescription}>{userPlaylistData?.description}</div>
                     <div className={style.headerInfo}>
                         <p style={{fontWeight: 'bold'}}>{userPlaylistData?.owner?.display_name}</p>
-                        <p style={{fontWeight: 'bold'}}>&bull;{` ${userPlaylistData?.tracks?.total} ${userPlaylistData?.tracks?.total === 1 ? "song" : "songs"}`}</p>
+                        <p style={{fontWeight: 'bold'}}>&bull;{` ${playListLength} ${userPlaylistData?.tracks?.total === 1 ? "song" : "songs"}`}</p>
                         <p style={{color: '#cbc6c6'}}>&bull; {msToTime(timers)}</p>
                     </div>
                 </div>
@@ -188,7 +198,7 @@ export default function PlaylistDetails(props: IUserPlaylist) {
 
                 <div style={
                     // @ts-ignore
-                    {position: `${position}`, top: '70px',zIndex:1, backgroundColor: `${background}`}}
+                    {position: `${position}`, top: '70px', zIndex: 1, backgroundColor: `${background}`}}
                      className={style.artistInfo}>
                     <div className={style.infoTitleBar}>
                         <div className={style.number}>#</div>
@@ -205,21 +215,21 @@ export default function PlaylistDetails(props: IUserPlaylist) {
                         userPlaylistData?.tracks?.items.map((item: any, index: number) => {
                             return (
                                 <TrackItemsLine
-                            imgUrl={item.track.album.images[0].url}
-                            title={item.track.name}
-                            album={item.track.album.name}
-                            id={item.track.id}
-                            index={index}
-                            albumId={item.track.album.id}
-                            artists={item?.track?.artists}
-                            date_added={formatDate(item.added_at)}
-                            ms_duration={msToTime(item.track.duration_ms)}
-                            uri={item.track.uri}/>
+                                    imgUrl={item.track.album.images[0].url}
+                                    title={item.track.name}
+                                    album={item.track.album.name}
+                                    id={item.track.id}
+                                    index={index}
+                                    albumId={item.track.album.id}
+                                    artists={item?.track?.artists}
+                                    date_added={formatDate(item.added_at)}
+                                    ms_duration={msToTime(item.track.duration_ms)}
+                                    uri={item.track.uri}/>
                             )
                         })
                     }
                     <div
-                        style={{marginTop:'30px'}}
+                        style={{marginTop: '30px'}}
                         className={style.refresh}
                         onClick={findMoreHandle}>
                         <div className={style.refBtn}>Find more</div>
@@ -228,20 +238,21 @@ export default function PlaylistDetails(props: IUserPlaylist) {
                 <div className={style.recommendationContainer}>
                     <h4>Recommendation</h4>
                     {
-                       recommendation.map((item:any,index:number)=>{
-                           return   (
-                               <Recommendation
-                                   imgUrl={item.album.images[0].url}
-                                   title={item.name}
-                                   album={item.album.name}
-                                   albumId={item.album.id} id={item.id}
-                                   index={index} artists={item.artists}
-                                   uri={item.uri}
-                                   playlistID = {playListId}
-
-                               />
-                           )
-                       })
+                        recommendation.map((item: any, index: number) => {
+                            return (
+                                <Recommendation
+                                    imgUrl={item.album.images[0].url}
+                                    title={item.name}
+                                    album={item.album.name}
+                                    albumId={item.album.id} id={item.id}
+                                    index={index} artists={item.artists}
+                                    uri={item.uri}
+                                    playlistID={playListId}
+                                    playlistLength={userPlaylistData?.tracks?.total}
+                                    parentCallback={callbackFunction}
+                                />
+                            )
+                        })
                     }
                 </div>
                 <div

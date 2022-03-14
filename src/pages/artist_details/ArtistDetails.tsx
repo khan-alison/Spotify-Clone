@@ -86,7 +86,9 @@ function ArtistDetails(props: IArtistDetails) {
             setTracksList(tracks);
         });
 
-
+        setSeeMore(false)
+        setShowMoreAlbums(false)
+        setShowMoreArtists(false)
 
 
     }, [isFlw,artistId]);

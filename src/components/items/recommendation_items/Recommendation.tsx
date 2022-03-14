@@ -21,6 +21,8 @@ interface ITrackItems {
     artists:[];
     uri:string;
     playlistID:any;
+    playlistLength:number;
+    parentCallback:any;
 }
 
 
@@ -28,11 +30,14 @@ export default function Recommendation(props:ITrackItems){
     const dispatch = useDispatch();
     const data = useSelector((state:any)=>state.auth)
     const [isFar, setFar] = useState(false);
+    const [display,setDisplay] = useState('')
 
     const handleArtistClick = (id:string,name:string)=>{
         dispatch(getArtistID(id))
         dispatch(getArtistName(name))
     }
+
+    console.log(props.playlistLength)
 
     const handlePlay = () => {
         dispatch(getUri(props.uri))
@@ -44,9 +49,13 @@ export default function Recommendation(props:ITrackItems){
             }, function(err:any) {
                 console.log('Something went wrong!', err);
             });
+        props.parentCallback(props.playlistLength+1)
+        setDisplay('none')
     }
     return(
-        <div className={style.trackItem}>
+        <div className={style.trackItem}
+             style={{display:`${display}`}}
+        >
             <PlayArrowIcon className={style.playIcon} onClick={handlePlay}/>
             <div className={style.trackContent}>
                 <img src={props.imgUrl} alt="" className={style.img}/>

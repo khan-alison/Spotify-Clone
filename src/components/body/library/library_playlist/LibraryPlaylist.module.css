@@ -57,13 +57,13 @@
     right: 10%;
     transform: translateY(70%);
     opacity: 0;
-    box-shadow: 0 1px 0px 0 black;
     border-radius: 50%;
 }
 
 .icon:hover{
     font-size: 320% !important;
     cursor: pointer;
+
 }
 
 @keyframes myAnimation {
