@@ -137,7 +137,11 @@ export default function Header() {
                                         // onBlur={onBlur}
                                     >
                                     </input>
-                                    <ClearIcon onClick={clearHandle}/>
+                                    {
+                                        search ? (
+                                            <ClearIcon onClick={clearHandle}/>
+                                        ):<div></div>
+                                    }
                                 </div>
                             )
                         case `/artist/${artistID}`:

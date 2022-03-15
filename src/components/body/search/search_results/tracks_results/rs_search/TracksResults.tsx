@@ -5,9 +5,9 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import {Dropdown} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
-import {spotifyApi} from "../../../../../spotify/api";
-import {getArtistID, getArtistName, getUri} from "../../../../../redux/actions/actions";
 import {useDispatch, useSelector} from "react-redux";
+import {spotifyApi} from "../../../../../../spotify/api";
+import {getArtistID, getArtistName, getUri} from "../../../../../../redux/actions/actions";
 
 interface ITracksResult {
     imageUrl: string,

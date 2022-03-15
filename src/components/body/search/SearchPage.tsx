@@ -4,14 +4,11 @@ import {useDispatch, useSelector} from "react-redux";
 import {spotifyApi} from "../../../spotify/api";
 import SearchRecommendation from "./seach_recommendation/SearchRecommendation";
 import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite';
-import TracksResults from "./search_results/tracks_results/TracksResults";
-import ArtistsResults from "./search_results/artists_results/ArtistsResults";
 import PlaylistResults from "./search_results/playlist_results/PlaylistResults";
 import {NavLink} from "react-router-dom";
 import {getArtistID, getArtistName} from "../../../redux/actions/actions";
-import PlaylistItems from "../../items/playlist_items/home/PlaylistItems";
-import PlaylistGeneral from "../../items/playlist_items/general/PlaylistGeneral";
 import ArtistItems from "../../items/artist_items/ArtistItems";
+import TracksResults from "./search_results/tracks_results/rs_search/TracksResults";
 
 
 export default function Search() {
@@ -89,7 +86,6 @@ export default function Search() {
                                 </h4>
                                     {
                                         topSearch.map((item:any,index:number)=>{
-                                            console.log(item.id)
                                             return (
                                                 <div className={style.topResultContainer}>
                                                     <NavLink to={`/artist/${item.id}`}
@@ -177,7 +173,6 @@ export default function Search() {
                             <div className={style.artistsContainer}>
                                 {
                                     searchArtistResult.map((artist:any,index:number)=>{
-                                        console.log(artist)
                                         return(
                                             <ArtistItems
                                                 artistName={artist.name}

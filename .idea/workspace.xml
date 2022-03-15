@@ -4,11 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e8ed005e-e0a1-4b24-b12f-cc139200ac2a" name="Changes" comment="" />
+    <list default="true" id="e8ed005e-e0a1-4b24-b12f-cc139200ac2a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/body/search/SearchPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/body/search/SearchPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/body/search/search_results/tracks_results/TracksResults.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/body/search/search_results/tracks_results/rs_search/TracksResults.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/body/search/search_results/tracks_results/TracksResults.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/body/search/search_results/tracks_results/rs_search/TracksResults.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/items/recommendation_items/Recommendation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/items/recommendation_items/Recommendation.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/items/track_items/line/TrackItemsLine.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/items/track_items/line/TrackItemsLine.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/playlist_details/PlaylistDetails.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/playlist_details/PlaylistDetails.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/playlist_details/PlaylistDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/playlist_details/PlaylistDetails.tsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript JSX File" />
+        <option value="CSS File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -26,7 +44,8 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/items/recommendation_items" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/body/search/search_results/tracks_results/rs_search" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -37,6 +56,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/body/search/search_results/tracks_results/rs_search" />
       <recent name="$PROJECT_DIR$/src/components/items/recommendation_items" />
       <recent name="$PROJECT_DIR$/src/components/items/track_items/line" />
       <recent name="$PROJECT_DIR$/src/components/items/track_items/grenes" />
@@ -50,11 +70,23 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1646969260593</updated>
-      <workItem from="1646969263032" duration="25681000" />
+      <workItem from="1646969263032" duration="27043000" />
+      <workItem from="1647303190200" duration="4192000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

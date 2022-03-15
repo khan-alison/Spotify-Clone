@@ -163,14 +163,6 @@ export default function TrackItemsLine(props:ITrackItems){
                                 to={`/artist`}
                                 onClick={() => {
                                     console.log("b")
-                                    // props.spotify
-                                    //     .getArtistAlbums(item?.track?.artists[0]?.id, {
-                                    //         limit: 5,
-                                    //     })
-                                    //     .then((albums: any) => {
-                                    //         dispatch(getArtistAlbums(albums.body.items));
-                                    //     });
-                                    // dispatch(getArtistId(item?.track?.artists[0]?.id));
                                 }}
                             >
                                 Go to artist
@@ -182,10 +174,6 @@ export default function TrackItemsLine(props:ITrackItems){
                                 to={`/album`}
                                 onClick={() => {
                                     console.log("a");
-                                    // dispatch(getArtistId(item.track.album.artists[0].id));
-                                    // dispatch(
-                                    //     getAlbumImage(item.track.album.images[0].url)
-                                    // );
                                 }}
                             >
                                 Go to album

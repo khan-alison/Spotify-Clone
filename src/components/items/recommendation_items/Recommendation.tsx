@@ -17,12 +17,12 @@ interface ITrackItems {
     album: string;
     albumId:string;
     id: string;
-    index:number;
+    index?:number;
     artists:[];
     uri:string;
     playlistID:any;
     playlistLength:number;
-    parentCallback:any;
+    parentCallback?:any;
 }
 
 

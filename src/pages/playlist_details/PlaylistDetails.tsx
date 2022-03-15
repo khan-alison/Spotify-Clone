@@ -2,9 +2,7 @@ import React, {useEffect, useRef, useState} from "react";
 import style from "./PlaylistDetails.module.css"
 import useRouteMatch, {NavLink, useLocation, useParams} from "react-router-dom"
 import {useDispatch, useSelector} from "react-redux";
-import PlayCircleIcon from "@mui/icons-material/PlayCircle";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import SearchIcon from '@mui/icons-material/Search';
 import {spotifyApi} from "../../spotify/api";
 import {
     getArtistID,
@@ -12,13 +10,16 @@ import {
     getPlaylistID,
     getPlaylistName,
     getUri,
-    getUserPlaylist
+    getUserPlaylist, searchOnType
 } from "../../redux/actions/actions";
 import FastAverageColor from "fast-average-color";
 import PlayCircleFilledWhiteIcon from "@mui/icons-material/PlayCircleFilledWhite";
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import TrackItemsLine from "../../components/items/track_items/line/TrackItemsLine";
 import Recommendation from "../../components/items/recommendation_items/Recommendation";
+import ClearIcon from "@mui/icons-material/Clear";
+import TracksResults from "../../components/body/search/search_results/tracks_results/rs_search/TracksResults";
+// import TracksResults from "../../components/body/search/search_results/tracks_results/TracksResults";
 
 interface IUserPlaylist {
     spotify: any
@@ -42,8 +43,12 @@ export default function PlaylistDetails(props: IUserPlaylist) {
     const [recommendation, setRecommendations] = useState([])
     const [refresh, setRefresh] = useState(false)
     const [findMore, setFindMore] = useState(false)
-    const [playListLength, setPlaylistLenghth] = useState(0)
+    const [playListLength, setPlaylistLength] = useState(0)
     const ref = useRef(null);
+    const [search, setSearch] = useState("");
+    const [searchTrackResult, setSearchTrackResult] = useState([]);
+
+
 
     const handleClick = (id: string, name: string) => {
         dispatch(getArtistID(id))
@@ -78,8 +83,11 @@ export default function PlaylistDetails(props: IUserPlaylist) {
         spotifyApi.getPlaylist(playListId.playlistID).then((playList: any) => {
             getUserPlaylistData(playList?.body);
             setPlaylistThumb(playList?.body?.images[0].url)
-            setPlaylistLenghth(playList?.body?.tracks?.total)
+            setPlaylistLength(playList?.body?.tracks?.total)
         });
+        setFindMore(false)
+        setSearch('')
+        setSearchTrackResult([])
     }, [playListId, playListLength])
 
     useEffect(() => {
@@ -161,15 +169,37 @@ export default function PlaylistDetails(props: IUserPlaylist) {
     }
 
     const callbackFunction = (childData: any) => {
-        // setMessage(childData)
         console.log(childData)
-        setPlaylistLenghth(childData)
-        // spotifyApi.getPlaylist(playListId.playlistID).then((playList: any) => {
-        //     getUserPlaylistData(playList?.body);
-        //     setPlaylistThumb(playList?.body?.images[0].url)
-        //     setPlaylistLenghth(playList?.body?.tracks?.total)
-        // });
+        setPlaylistLength(childData)
     }
+
+    const searchHandle = (event: any) => {
+        setSearch(event.target.value)
+        if(event.target.value == ''){
+            setSearchTrackResult([])
+        }
+        // dispatch(searchOnType(event.target.value))
+    }
+
+    const clearHandle = () =>{
+        setSearch('')
+        setSearchTrackResult([])
+    }
+
+    const unfindHandle = ()=>{
+        setFindMore(false)
+        setSearch('')
+        setSearchTrackResult([])
+    }
+
+    useEffect(() => {
+        setSearch(search +"")
+        spotifyApi.searchTracks(search).then((data: any) => {
+            console.log(data?.body?.tracks?.items)
+            setSearchTrackResult(data?.body?.tracks?.items)
+        });
+
+    }, [search]);
 
 
     return (
@@ -228,39 +258,103 @@ export default function PlaylistDetails(props: IUserPlaylist) {
                             )
                         })
                     }
-                    <div
-                        style={{marginTop: '30px'}}
-                        className={style.refresh}
-                        onClick={findMoreHandle}>
-                        <div className={style.refBtn}>Find more</div>
-                    </div>
-                </div>
-                <div className={style.recommendationContainer}>
-                    <h4>Recommendation</h4>
                     {
-                        recommendation.map((item: any, index: number) => {
-                            return (
-                                <Recommendation
-                                    imgUrl={item.album.images[0].url}
-                                    title={item.name}
-                                    album={item.album.name}
-                                    albumId={item.album.id} id={item.id}
-                                    index={index} artists={item.artists}
-                                    uri={item.uri}
-                                    playlistID={playListId}
-                                    playlistLength={userPlaylistData?.tracks?.total}
-                                    parentCallback={callbackFunction}
-                                />
-                            )
-                        })
+                        findMore ? (<div></div>):(
+                            <div
+                                style={{marginTop: '30px'}}
+                                className={style.refresh}
+                                onClick={findMoreHandle}>
+                                <div className={style.refBtn}>Find more</div>
+                            </div>
+                        )
                     }
                 </div>
-                <div
-                    className={style.refresh}
-                    onClick={refreshHandle}>
-                    <div className={style.refBtn}>Refresh</div>
-                </div>
-                {/*<img src={userPlaylistData?.images[0]?.url} alt=""/>*/}
+                {
+                    !findMore ? (
+                            <>
+                                <div className={style.recommendationContainer}>
+                                    <h4>Recommendation</h4>
+                                    {
+                                        recommendation.map((item: any, index: number) => {
+                                            return (
+                                                <Recommendation
+                                                    imgUrl={item.album.images[0].url}
+                                                    title={item.name}
+                                                    album={item.album.name}
+                                                    albumId={item.album.id} id={item.id}
+                                                    index={index} artists={item.artists}
+                                                    uri={item.uri}
+                                                    playlistID={playListId}
+                                                    playlistLength={userPlaylistData?.tracks?.total}
+                                                    parentCallback={callbackFunction}
+                                                />
+                                            )
+                                        })
+                                    }
+                                </div>
+                                <div
+                                    className={style.refresh}
+                                    onClick={refreshHandle}>
+                                    <div className={style.refBtn}>Refresh</div>
+                                </div>
+                            </>
+                    ): 
+                        <>
+                            <hr/>
+                            <div className={style.searchContainer}>
+                                <div className={style.searchHeader}>
+                                    <h4>Let's find something for your playlist</h4>
+                                    <ClearIcon
+                                        className={style.clearIcon}
+                                        onClick={unfindHandle}
+                                    />
+                                </div>
+                                <div className={style.search}>
+                                    <label htmlFor="searchInput">
+                                        <SearchIcon className={style.searchIcon}/>
+                                    </label>
+                                    <input
+                                        id="searchInput"
+                                        type="text"
+                                        autoComplete="off"
+                                        className={style.searchInput}
+                                        placeholder="Artists, songs, or podcasts"
+                                        value={search}
+                                        onChange={searchHandle}
+                                        // onBlur={onBlur}
+                                    >
+                                    </input>
+                                    {
+                                        search ? (
+                                            <ClearIcon
+                                                className={style.clearIcon}
+                                                onClick={clearHandle}
+                                            />
+                                        ): <div></div>
+                                    }
+                                </div>
+                                <div className={style.trackResultContainer}>
+                                    {   searchTrackResult && searchTrackResult.length>0 &&
+                                        searchTrackResult.map((track:any,index:number)=>{
+                                            return (
+                                                <Recommendation
+                                                    imgUrl={track?.album?.images[0]?.url}
+                                                    title={track.name}
+                                                    album={track?.album?.name}
+                                                    albumId={track?.album?.id}
+                                                    id={track.id}
+                                                    index={index} artists={track.artists} uri={track.uri} playlistID={playListId}
+                                                    playlistLength={playListLength}
+                                                    parentCallback={callbackFunction}
+                                                />
+                                            )
+
+                                        })
+                                    }
+                                </div>
+                            </div>
+                        </>
+                }
             </div>
         </div>
     )
