@@ -37,7 +37,6 @@ export default function Recommendation(props:ITrackItems){
         dispatch(getArtistName(name))
     }
 
-    console.log(props.playlistLength)
 
     const handlePlay = () => {
         dispatch(getUri(props.uri))

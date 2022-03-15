@@ -19,6 +19,9 @@ import TrackItemsLine from "../../components/items/track_items/line/TrackItemsLi
 import Recommendation from "../../components/items/recommendation_items/Recommendation";
 import ClearIcon from "@mui/icons-material/Clear";
 import TracksResults from "../../components/body/search/search_results/tracks_results/rs_search/TracksResults";
+import PopUp from "../../components/pop_up/edit_playlist/PopUp";
+import PopUpDel from "../../components/pop_up/delete_cf/PopUpDel";
+// import PopUp from "../../components/pop_up/PopUp";
 // import TracksResults from "../../components/body/search/search_results/tracks_results/TracksResults";
 
 interface IUserPlaylist {
@@ -39,7 +42,7 @@ export default function PlaylistDetails(props: IUserPlaylist) {
     const [background, setBackground] = useState<any>("")
     const [position, setPosition] = useState<any>("")
     const [offsetTop, setOffsetTop] = useState(0)
-    const [clientHeight, setClientHeigt] = useState(0)
+    const [clientHeight, setClientHeight] = useState(0)
     const [recommendation, setRecommendations] = useState([])
     const [refresh, setRefresh] = useState(false)
     const [findMore, setFindMore] = useState(false)
@@ -47,6 +50,12 @@ export default function PlaylistDetails(props: IUserPlaylist) {
     const ref = useRef(null);
     const [search, setSearch] = useState("");
     const [searchTrackResult, setSearchTrackResult] = useState([]);
+    const [isOpen,setIsOpen] = useState(false)
+    // const a = state.count
+    const handleClose = (data: any) => {
+        setIsOpen(data);
+    }
+
 
 
 
@@ -82,7 +91,7 @@ export default function PlaylistDetails(props: IUserPlaylist) {
     useEffect(() => {
         spotifyApi.getPlaylist(playListId.playlistID).then((playList: any) => {
             getUserPlaylistData(playList?.body);
-            setPlaylistThumb(playList?.body?.images[0].url)
+            setPlaylistThumb(playList?.body?.images[0]?.url || 'https://community.spotify.com/t5/image/serverpage/image-id/25294i2836BD1C1A31BDF2?v=v2')
             setPlaylistLength(playList?.body?.tracks?.total)
         });
         setFindMore(false)
@@ -102,7 +111,6 @@ export default function PlaylistDetails(props: IUserPlaylist) {
             })
                 .then(function (data: any) {
                     let recommendations = data.body;
-                    console.log(recommendations.tracks);
                     setRecommendations(recommendations.tracks.splice(0, 10))
                 }, function (err: any) {
                     console.log("Something went wrong!", err);
@@ -130,7 +138,7 @@ export default function PlaylistDetails(props: IUserPlaylist) {
         // @ts-ignore
         setOffsetTop(ref?.current?.offsetTop)
         // @ts-ignore
-        setClientHeigt(ref?.current?.clientHeight)
+        setClientHeight(ref?.current?.clientHeight)
         fac
             .getColorAsync(`${playlistThumb}`)
             .then((color) => {
@@ -141,8 +149,10 @@ export default function PlaylistDetails(props: IUserPlaylist) {
             });
     })
     const timers = userPlaylistData?.tracks?.items
+        && userPlaylistData?.tracks?.items.length > 0
+        && userPlaylistData?.tracks?.items
         .map((item: any) => {
-            return item.track.duration_ms;
+            return item?.track?.duration_ms;
         })
         .reduce(
             (
@@ -173,12 +183,16 @@ export default function PlaylistDetails(props: IUserPlaylist) {
         setPlaylistLength(childData)
     }
 
+    const callbackDelete = (childData:any) => {
+        console.log(childData)
+        setPlaylistLength(childData)
+    }
+
     const searchHandle = (event: any) => {
         setSearch(event.target.value)
         if(event.target.value == ''){
             setSearchTrackResult([])
         }
-        // dispatch(searchOnType(event.target.value))
     }
 
     const clearHandle = () =>{
@@ -201,21 +215,24 @@ export default function PlaylistDetails(props: IUserPlaylist) {
 
     }, [search]);
 
-
     return (
         <div className={style.container}>
-            <div style={{backgroundColor: `${backgroundColor}`}} className={style.header}>
-                <img src={playlistThumb} alt="" className={style.headerImg}/>
+            <div style={{backgroundColor: `${backgroundColor}`|| '#444544'}} className={style.header}>
+                <img src={playlistThumb || 'https://community.spotify.com/t5/image/serverpage/image-id/25294i2836BD1C1A31BDF2?v=v2'} alt="" className={style.headerImg}/>
                 <div className={style.headerContent}>
                     <div className={style.headerType}>
                         {userPlaylistData?.type}
                     </div>
-                    <div className={style.headerName}>{userPlaylistData?.name}</div>
+                    <div
+                        className={style.headerName}
+                         onClick={() => setIsOpen(true)}
+                    >{userPlaylistData?.name}</div>
+                    <PopUp open={isOpen} playlistId={playListId} onClose={handleClose} currName={userPlaylistData?.name}/>
                     <div className={style.headerDescription}>{userPlaylistData?.description}</div>
                     <div className={style.headerInfo}>
                         <p style={{fontWeight: 'bold'}}>{userPlaylistData?.owner?.display_name}</p>
                         <p style={{fontWeight: 'bold'}}>&bull;{` ${playListLength} ${userPlaylistData?.tracks?.total === 1 ? "song" : "songs"}`}</p>
-                        <p style={{color: '#cbc6c6'}}>&bull; {msToTime(timers)}</p>
+                        <p style={{color: '#cbc6c6'}}>&bull; {msToTime(timers||0)}</p>
                     </div>
                 </div>
             </div>
@@ -241,10 +258,11 @@ export default function PlaylistDetails(props: IUserPlaylist) {
                     </div>
                 </div>
                 <div className={style.trackItems} ref={ref}>
-                    {
+                    {   userPlaylistData?.tracks?.items && userPlaylistData?.tracks?.items.length >0 &&
                         userPlaylistData?.tracks?.items.map((item: any, index: number) => {
                             return (
                                 <TrackItemsLine
+                                    key={index}
                                     imgUrl={item.track.album.images[0].url}
                                     title={item.track.name}
                                     album={item.track.album.name}
@@ -254,7 +272,11 @@ export default function PlaylistDetails(props: IUserPlaylist) {
                                     artists={item?.track?.artists}
                                     date_added={formatDate(item.added_at)}
                                     ms_duration={msToTime(item.track.duration_ms)}
-                                    uri={item.track.uri}/>
+                                    uri={item.track.uri}
+                                    playlistId={playListId}
+                                    playlistLength={playListLength}
+                                    parentCallback={callbackDelete}
+                                />
                             )
                         })
                     }
@@ -274,10 +296,11 @@ export default function PlaylistDetails(props: IUserPlaylist) {
                             <>
                                 <div className={style.recommendationContainer}>
                                     <h4>Recommendation</h4>
-                                    {
+                                    {   recommendation && recommendation.length > 0 &&
                                         recommendation.map((item: any, index: number) => {
                                             return (
                                                 <Recommendation
+                                                    key={index}
                                                     imgUrl={item.album.images[0].url}
                                                     title={item.name}
                                                     album={item.album.name}
@@ -338,6 +361,7 @@ export default function PlaylistDetails(props: IUserPlaylist) {
                                         searchTrackResult.map((track:any,index:number)=>{
                                             return (
                                                 <Recommendation
+                                                    key={index}
                                                     imgUrl={track?.album?.images[0]?.url}
                                                     title={track.name}
                                                     album={track?.album?.name}

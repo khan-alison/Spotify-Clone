@@ -15,6 +15,7 @@ const scopes = [
     "user-read-currently-playing",
     "user-read-recently-played",
     "user-top-read",
+    //sss
     "streaming",
     "user-read-email",
     "user-read-private",
@@ -28,6 +29,8 @@ const scopes = [
     'user-follow-modify',
     'user-follow-read',
     'playlist-modify-private'
+
+
 ]
 
 

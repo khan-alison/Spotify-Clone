@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import style from "./SideBar.module.css"
 import { Link, NavLink } from "react-router-dom";
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -9,10 +9,25 @@ import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import SidebarOptions from "./sidebar_option/SidebarOptions";
 import SidebarPlaylist from "./sidebar_playlist/SidebarPlaylist";
+import {spotifyApi} from "../../spotify/api";
+import {getUserPlaylist} from "../../redux/actions/actions";
 
 export default function SideBar(){
-
+    const dispatch = useDispatch()
     const userPlaylist = useSelector((state: any) => state.auth.usePlaylist);
+    const createNewPlaylist = () => {
+        spotifyApi.createPlaylist(`My playlist #${userPlaylist.length}`, { 'description': 'My description', 'public': true })
+            .then(function(data: any) {
+                console.log('Created playlist!', data);
+                spotifyApi.getUserPlaylists().then((userPlaylists: any) => {
+                    dispatch(getUserPlaylist(userPlaylists.body.items))
+                    console.log(userPlaylists.body.items)
+                });
+            }, function(err: Error) {
+                console.log('Something went wrong!', err);
+            });
+    }
+
 
     return(
         <div className={style.container}>
@@ -33,7 +48,7 @@ export default function SideBar(){
                 <SidebarOptions title="Library" icon={LibraryMusicIcon}/>
             </NavLink>
 
-            <div className={style.playlist}>
+            <div className={style.playlist} onClick={createNewPlaylist}>
                 <PlaylistAddIcon className={style.logo}/>
                 Create playlist
             </div>
@@ -57,7 +72,7 @@ export default function SideBar(){
                     userPlaylist.length > 0 &&
                     userPlaylist.map((playList:any,index:number)=>{
                         return(
-                            <SidebarPlaylist key={index} name={playList.name} id={playList.id} uri={playList.uri}/>
+                            <SidebarPlaylist key={index} name={playList.name} id={playList.id} index={index} uri={playList.uri}/>
                         )
                     })
                 }

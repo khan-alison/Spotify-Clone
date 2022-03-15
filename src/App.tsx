@@ -58,16 +58,6 @@ function App() {
 
     spotifyApi.getUserPlaylists().then((userPlaylists: any) => {
       dispatch(getUserPlaylist(userPlaylists.body.items));
-      console.log(userPlaylists.body.items)
-    });
-
-    spotifyApi.getUserPlaylists().then((userPlaylists: any) => {
-      dispatch(getUserPlaylist(userPlaylists.body.items));
-    });
-
-    spotifyApi.getMySavedAlbums().then((myTopArtists: any) => {
-      // dispatch(getSavedAlbum(myTopArtists.body.items));
-      console.log(myTopArtists.body.items)
     });
 
     spotifyApi

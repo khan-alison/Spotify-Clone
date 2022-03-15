@@ -48,11 +48,12 @@ export default function LibraryPlaylist(){
                                 <h1 style={{fontWeight: "bold"}}>Liked songs</h1>
                                 <p>{savedTrack.length} songs</p>
                             </NavLink>
-                            <PlayCircleFilledWhiteIcon className={style.icon}/>
+                            <PlayCircleFilledWhiteIcon
+
+                                className={style.icon}/>
                         </div>
                         {
                             userPlaylist.map((playlist:any,index:any)=>{
-                                console.log(playlist)
                                     return(
                                         <PlaylistGeneral
                                             key={index}

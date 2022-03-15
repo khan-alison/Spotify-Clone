@@ -1,5 +1,16 @@
 .container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
 
+.SideBarPlaylist:hover{
+    color:white
+}
+
+.container:hover .icon{
+    display: flex !important;
 }
 
 .SideBarPlaylist{
@@ -8,6 +19,14 @@
     transition:  color 0.3s ease-in;
 }
 
-.SideBarPlaylist:hover{
-    color:white
+.icon{
+    font-size:  100% !important;
+    display: none !important;
+    cursor: pointer;
 }
+
+.icon:hover{
+    color: white;
+}
+
+

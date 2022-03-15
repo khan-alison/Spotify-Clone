@@ -5,6 +5,7 @@
     margin-top: -100px;
     position: relative;
     color: white;
+    padding: 0 0 100px;
 }
 
 .header {
@@ -291,6 +292,10 @@
 .trackResultContainer {
     padding: 4px 40px;
 
+}
+
+.headerImg{
+    /*box-shadow: ;*/
 }
 
 

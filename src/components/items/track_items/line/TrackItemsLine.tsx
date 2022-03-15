@@ -22,7 +22,9 @@ interface ITrackItems {
     uri:string;
     ms_duration:string;
     date_added:string;
-
+    playlistId:any;
+    playlistLength:number;
+    parentCallback?:any;
 }
 
 
@@ -91,6 +93,18 @@ export default function TrackItemsLine(props:ITrackItems){
                 console.log('Something went wrong!', err);
             });
     }
+
+    const handleDeleteTrack = (uri:any) => {
+        var tracks = [{ uri : `${uri}` }];
+        var playlistId = '7CHg1unmrhCQZWcibgKOog';
+        spotifyApi.removeTracksFromPlaylist(playlistId, tracks)
+            .then(function(data:any) {
+            }, function(err:any) {
+                console.log('Something went wrong!', err);
+            });
+        props.parentCallback(props.playlistLength-1)
+    }
+
     return(
         <div className={style.trackItem}>
             <PlayArrowIcon className={style.playIcon} onClick={handlePlay}/>
@@ -179,6 +193,16 @@ export default function TrackItemsLine(props:ITrackItems){
                                 Go to album
                             </NavLink>
                         </Dropdown.Item>
+                        <Dropdown.Item className={style.dropDownItems}>
+                            <div
+                                style={{ textDecoration: "none", color: "white" }}
+
+                                onClick={()=>handleDeleteTrack(props.uri)}
+                            >
+                                Delete This Song
+                            </div>
+                        </Dropdown.Item>
+
                     </Dropdown.Menu>
                 </Dropdown>
             </div>

@@ -5,15 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e8ed005e-e0a1-4b24-b12f-cc139200ac2a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/pop_up/delete_cf/PopUpDel.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/pop_up/delete_cf/PopUpDel.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/pop_up/edit_playlist/PopUp.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/pop_up/edit_playlist/PopUp.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/body/search/SearchPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/body/search/SearchPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/body/search/search_results/tracks_results/TracksResults.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/body/search/search_results/tracks_results/rs_search/TracksResults.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/body/search/search_results/tracks_results/TracksResults.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/body/search/search_results/tracks_results/rs_search/TracksResults.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/body/library/library_playlist/LibraryPlaylist.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/body/library/library_playlist/LibraryPlaylist.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header/Header.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/items/recommendation_items/Recommendation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/items/recommendation_items/Recommendation.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/items/track_items/line/TrackItemsLine.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/items/track_items/line/TrackItemsLine.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/sidebar/SideBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sidebar/SideBar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/sidebar/sidebar_playlist/SidebarPlaylist.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sidebar/sidebar_playlist/SidebarPlaylist.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/sidebar/sidebar_playlist/SidebarPlaylist.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sidebar/sidebar_playlist/SidebarPlaylist.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/playlist_details/PlaylistDetails.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/playlist_details/PlaylistDetails.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/playlist_details/PlaylistDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/playlist_details/PlaylistDetails.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/spotify/api.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/spotify/api.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +52,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/body/search/search_results/tracks_results/rs_search" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/pop_up/delete_cf" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -56,10 +64,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/pop_up/delete_cf" />
+      <recent name="$PROJECT_DIR$/src/components/pop_up/edit_playlist" />
       <recent name="$PROJECT_DIR$/src/components/body/search/search_results/tracks_results/rs_search" />
       <recent name="$PROJECT_DIR$/src/components/items/recommendation_items" />
       <recent name="$PROJECT_DIR$/src/components/items/track_items/line" />
-      <recent name="$PROJECT_DIR$/src/components/items/track_items/grenes" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -71,7 +80,7 @@
       <option name="presentableId" value="Default" />
       <updated>1646969260593</updated>
       <workItem from="1646969263032" duration="27043000" />
-      <workItem from="1647303190200" duration="4192000" />
+      <workItem from="1647303190200" duration="19995000" />
     </task>
     <servers />
   </component>

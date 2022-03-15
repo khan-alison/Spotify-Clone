@@ -26,7 +26,7 @@ export default function Header() {
     const playlistID = useSelector((state: any) => state.auth.playlistID);
     const uri = useSelector((state: any) => state.auth.uri);
     const dispatch = useDispatch();
-    const [display, setDisplay] = useState("")
+    const [display, setDisplay] = useState("none")
     const location = useLocation();
     const active = {
         backgroundColor: "red !important",
