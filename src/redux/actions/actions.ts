@@ -69,6 +69,20 @@ export const getPlaylistID = (payload: any)=>{
     }
 }
 
+export const getAlbumName = (payload: any)=>{
+    return{
+        type: 'GET_ALBUM_NAME',
+        payload,
+    }
+}
+
+export const getAlbumID = (payload: any)=>{
+    return{
+        type: 'GET_ALBUM_ID',
+        payload,
+    }
+}
+
 export const searchOnType = (payload: any)=>{
     return{
         type: 'SEARCH_ON_TYPE',

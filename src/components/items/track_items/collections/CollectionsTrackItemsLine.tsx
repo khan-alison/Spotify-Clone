@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {NavLink} from "react-router-dom";
 import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite';
-import style from "./TrackItemsLine.module.css"
+import style from "./CollectionsTrackItemsLine.module.css"
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 
 import {useDispatch, useSelector} from "react-redux";
@@ -28,7 +28,7 @@ interface ITrackItems {
 }
 
 
-export default function TrackItemsLine(props:ITrackItems){
+export default function CollectionsTrackItemsLine(props:ITrackItems){
     const dispatch = useDispatch();
     const data = useSelector((state:any)=>state.auth)
     const [isFar, setFar] = useState(false);
@@ -46,6 +46,7 @@ export default function TrackItemsLine(props:ITrackItems){
                 console.log('Something went wrong!', err);
             });
     },[])
+
 
     const handleClick = (id: any) => {
         spotifyApi.containsMySavedTracks([id])
@@ -84,15 +85,9 @@ export default function TrackItemsLine(props:ITrackItems){
             }, function (err: any) {
                 console.log('Something went wrong!', err);
             });
+        props.parentCallback(props.playlistLength-1)
     }
 
-    const likeHandle = (id: string) => {
-        spotifyApi.addToMySavedTracks([id])
-            .then(function (data: any) {
-            }, function (err: any) {
-                console.log('Something went wrong!', err);
-            });
-    }
 
     const handleDeleteTrack = (uri:any,pID:any) => {
         var tracks = [{ uri : `${uri}` }];
@@ -146,14 +141,10 @@ export default function TrackItemsLine(props:ITrackItems){
             </div>
             <div className={style.trackAdded}>{props.date_added}</div>
             <div className={style.trackDur}>
-                {isFar ? <FavoriteIcon
+                 <FavoriteIcon
                         onMouseDown={() => unlikedHandle(props.id)}
                         onMouseUp={() => handleClick(props.id)}
-                        className={style.farIcon}/> :
-                    <FavoriteBorderIcon
-                        onMouseUp={() => handleClick(props.id)}
-                        onMouseDown={() => likeHandle(props.id)}
-                        className={style.farIcon}/>}
+                        className={style.farIcon}/>
                 <div>
                     {props.ms_duration}
                 </div>
@@ -174,7 +165,19 @@ export default function TrackItemsLine(props:ITrackItems){
                         <Dropdown.Item className={style.dropDownItems}>
                             <NavLink
                                 style={{textDecoration: "none", color: "white"}}
+                                to={`/artist`}
+                                onClick={() => {
+                                    console.log("b")
+                                }}
+                            >
+                                Go to artist
+                            </NavLink>
+                        </Dropdown.Item>
+                        <Dropdown.Item className={style.dropDownItems}>
+                            <NavLink
+                                style={{textDecoration: "none", color: "white"}}
                                 to={`/album/${props.albumId}`}
+
                                 onClick={() => {
                                     console.log("a");
                                 }}
@@ -186,9 +189,10 @@ export default function TrackItemsLine(props:ITrackItems){
                             <div
                                 style={{ textDecoration: "none", color: "white" }}
 
-                                onClick={()=>handleDeleteTrack(props.uri,props.playlistId)}
+                                onMouseDown={() => unlikedHandle(props.id)}
+                                onMouseUp={() => handleClick(props.id)}
                             >
-                                Delete This Song
+                                Remove form favorite playlist
                             </div>
                         </Dropdown.Item>
 

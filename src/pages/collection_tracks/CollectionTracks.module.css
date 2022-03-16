@@ -1,4 +1,3 @@
-
 .container {
     width: 100%;
     height: 100%;
@@ -6,7 +5,13 @@
     margin-top: -100px;
     position: relative;
     color: white;
-    padding: 0 0 120px;
+    padding: 0 0 100px;
+}
+
+.headerContent{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
 .header {
@@ -14,40 +19,26 @@
     color: #fff;
     height: 40vh;
     height: 350px;
-    /*background-image: linear-gradient(#503b9d, #2e2158);*/
     display: flex;
     padding: 110px 30px 30px;
-    gap: 20px
+    gap: 20px;
+    background-image: linear-gradient(#503b9d, #2e2158);
+
 }
 
-
-
-.headerContent {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-}
-
-.headerInfo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.headerInfo > p {
-    margin: 0;
+.headerType {
+    font-weight: bold;
+    text-transform: uppercase;
     font-size: 12px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
 }
 
-
-.body {
-    padding: 30px 0px 100px
+.headerName {
+    font-weight: 750;
+    font-size: 70px;
+    line-height: 90px;
+    text-shadow: 1px 1px 2px black;
 }
+
 .artistOptions {
     padding: 10px 30px;
 }
@@ -64,9 +55,6 @@
     cursor: pointer;
 }
 
-
-
-
 .artistInfo {
     height: 40px;
     line-height: 40px;
@@ -82,79 +70,47 @@
     z-index: 1;
 }
 
-.headerType {
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 12px;
-}
-
-.headerName {
-    font-weight: 750;
-    font-size: 70px;
-    line-height: 90px;
-    text-shadow: 1px 1px 2px black;
-}
-
-.headerDescription {
-    font-size: 16px;
-    color: #cbc6c6;
-}
-
 .number {
-    flex: 5%;
+    flex: 3%;
     display: flex;
     justify-content: flex-start;
 }
 
-.title{
-    flex: 90%
+
+.title {
+    flex: 42%
 }
 
-.durationIcon{
-    flex:5%
+.album {
+    flex: 25%;
 }
 
-.trackLine{
+.dateAdded {
+    flex: 22%;
     display: flex;
-    align-items: center;
-    padding: 0 10px;
-    border-radius: 6px;
+    justify-content: center;
 }
 
-.trackLine:hover{
-    background-color: rgba(129, 126, 126, 0.4);
+.trackAdded {
+    flex: 22%;
+    display: flex;
+    justify-content: center;
 }
 
-.playIcon{
-    font-size: 200% !important;
-    position: absolute;
-    left: 3%;
-    opacity: 0;
-    cursor: pointer;
+
+.durationIcon {
+    flex: 8%;
+    display: flex;
+    justify-content: center;
 }
 
-.trackLine:hover .playIcon{
-    opacity: 1;
-    z-index: 1;
-}
 
-.trackLine:hover .number{
-    opacity: 0;
-}
+.trackItems {
+    padding: 10px 20px;
+    gap: 20px;
+    font-size: 14px;
 
-.description{
-    margin:0
 }
-
-.trackItems{
-    padding: 30px 30px  0 30px;
-}
-
-.artist:hover{
-    text-decoration: underline !important;
-    color: white !important;
-}
-
 @media screen and (max-width: 1068px) {
     .headerName {
         font-weight: bold;
@@ -193,3 +149,41 @@
         text-shadow: 1px 1px 2px black;
     }
 }
+
+@media screen and (max-width: 1068px) {
+    .headerName {
+        font-weight: bold;
+        font-size: 50px;
+        line-height: 70px;
+        text-shadow: 1px 1px 2px black;
+    }
+
+    .album {
+        display: none;
+    }
+
+    .trackAlbum {
+        display: none;
+
+    }
+}
+
+
+@media screen and (max-width: 860px) {
+    .headerName {
+        font-weight: bold;
+        font-size: 56px;
+        line-height: 70px;
+        text-shadow: 1px 1px 2px black;
+    }
+}
+
+@media screen and (max-width: 770px) {
+    .headerName {
+        font-weight: bold;
+        font-size: 40px;
+        line-height: 60px;
+        text-shadow: 1px 1px 2px black;
+    }
+}
+

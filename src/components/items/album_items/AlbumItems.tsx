@@ -2,38 +2,53 @@ import React from "react";
 import {NavLink} from "react-router-dom";
 import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite';
 import style from "./AlbumItems.module.css"
+import {getAlbumID, getAlbumName, getArtistID, getArtistName, getUri} from "../../../redux/actions/actions";
+import {useDispatch} from "react-redux";
 
 interface ITrackItems {
     imgUrl: string;
     name: string;
     id: string;
-    artists:[];
-    uri:string
+    artists: [];
+    uri: string
 }
 
 
-export default function AlbumItems(props:ITrackItems){
-    const handlePlayIconClick = ()=>{
+export default function AlbumItems(props: ITrackItems) {
+    const dispatch = useDispatch();
+    const handleGetInfo = (id: string, name: string, uri: string) => {
+        console.log(id, name, uri)
+        dispatch(getAlbumID(id))
+        dispatch(getAlbumName(name))
+        dispatch(getUri(uri))
+    }
+    const handlePlayIconClick = () => {
         console.log("a")
     }
 
-    return(
+    return (
         <div className={style.container}>
-            <NavLink to={`/album/${props.id}`} style={{textDecoration:"none",color:"white"}} >
+            <NavLink
+                onClick={() => handleGetInfo(props?.id, props?.name, props?.uri)}
+                to={`/album/${props.id}`}
+                style={{textDecoration: "none", color: "white"}}>
                 <img className={style.img} src={props?.imgUrl} alt=""/>
 
-                <h5 className={style.name}>{props?.name}</h5>
+                <h5 className={style.name}
+                    title={props?.name}
+
+                >{props?.name}</h5>
                 {/*<div>{props?.id}</div>*/}
-                <p className={style.description}>{props?.artists.map((item:any,index:number)=>(
+                <p className={style.description}>{props?.artists.map((item: any, index: number) => (
                     <NavLink
                         key={index}
                         to={`/artist/${item.id}`}
                         className={style.artist}
-                        style={{textDecoration:"none",color:"#A7A7A7"}}
+                        style={{textDecoration: "none", color: "#A7A7A7"}}
                     >
                         {
-                            (index<props?.artists.length-1) ?
-                                item.name + ", " :item.name
+                            (index < props?.artists.length - 1) ?
+                                item.name + ", " : item.name
                         }
                     </NavLink>
 

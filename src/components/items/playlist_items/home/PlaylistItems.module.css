@@ -42,7 +42,7 @@
 }
 
 .name {
-    maxwidth: 60%;
+    max-width: 40%;
     margin: 0;
     white-space: nowrap;
     overflow: hidden;

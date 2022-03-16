@@ -10,6 +10,8 @@ const initialState={
     artistID:[],
     playlistName:[],
     playlistID:[],
+    albumName:[],
+    albumID:[],
     searchMessage:[],
     uri:null,
     imageUrl:[],
@@ -74,6 +76,17 @@ export const reducers = (state = initialState, action: any) => {
             return{
                 ...state,
                 playlistID:action.payload
+            }
+
+        case 'GET_ALBUM_NAME':
+            return{
+                ...state,
+                albumName:action.payload
+            }
+        case 'GET_ALBUM_ID':
+            return{
+                ...state,
+                albumID:action.payload
             }
         case 'SEARCH_ON_TYPE':
             return {

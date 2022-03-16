@@ -24,6 +24,8 @@ export default function Header() {
     const artistID = useSelector((state: any) => state.auth.artistID);
     const playlistName = useSelector((state: any) => state.auth.playlistName);
     const playlistID = useSelector((state: any) => state.auth.playlistID);
+    const albumName = useSelector((state: any) => state.auth.albumName);
+    const albumID = useSelector((state: any) => state.auth.albumID);
     const uri = useSelector((state: any) => state.auth.uri);
     const dispatch = useDispatch();
     const [display, setDisplay] = useState("none")
@@ -41,7 +43,10 @@ export default function Header() {
             height = 500
         } else if (location.pathname.includes("/playlist/")) {
             height = 500
-        } else {
+        } else if (location.pathname.includes("/album/")) {
+            height = 500
+        }
+        else {
             height = headerHeight + 120
         }
         handleScroll = () => {
@@ -60,6 +65,19 @@ export default function Header() {
                 } else {
                     setState(`rgba(0,0,0,${window.pageYOffset / (height - 100)})`);
                 }
+
+                if (location.pathname.includes("/album/")) {
+                    setState(`rgba(0,0,0,${window.pageYOffset / (height - 300)})`);
+                    if (window.pageYOffset > 360) {
+                        setDisplay("block")
+                    }
+                    if(window.pageYOffset < 300){
+                        setDisplay("none")
+                    }
+                } else {
+                    setState(`rgba(0,0,0,${window.pageYOffset / (height - 100)})`);
+                }
+
 
                 if (location.pathname.includes("/playlist/")) {
                     setState(`rgba(0,0,0,${window.pageYOffset / (height - 300)})`);
@@ -145,7 +163,6 @@ export default function Header() {
                                 </div>
                             )
                         case `/artist/${artistID}`:
-
                             return (
 
                                 <div className={style.headerInfo}>
@@ -157,6 +174,22 @@ export default function Header() {
                                             dispatch(getUri(uri))
                                         }}/>
                                     <div style={{display: display}} className={style.artistName}>{artistName}</div>
+                                </div>
+                            )
+                        case `/album/${albumID}`:
+                            // console.log(uri)
+                            // console.log(albumName)
+                            // console.log(albumID)
+                            return (
+                                <div className={style.headerInfo}>
+                                    <PlayCircleFilledWhiteIcon
+                                        onClick={() => {
+                                            console.log(uri)
+                                            dispatch(getUri(uri))
+                                        }}
+                                        className={style.icon}
+                                        style={{display: display}}/>
+                                    <div style={{display: display}} className={style.artistName}>{albumName}</div>
                                 </div>
                             )
                         case `/playlist/${playlistID}`:

@@ -145,15 +145,15 @@
 
 
 .dropDownItems{
-    color:white;
     font-size: 12px;
     font-weight: bold;
 }
 
 .dropDownItems:hover {
+    color: white !important;
+
     animation: changeBgColor 0.5s;
     animation-fill-mode: forwards;
-    color: white !important;
 }
 
 @keyframes changeBgColor {
