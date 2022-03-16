@@ -10,7 +10,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import {useDispatch, useSelector} from "react-redux";
 import {Dropdown} from "react-bootstrap";
 import "./style.css"
-import {getUri, searchOnType} from "../../redux/actions/actions";
+import {getListUri, getUri, searchOnType} from "../../redux/actions/actions";
 
 
 export default function Header() {
@@ -27,6 +27,7 @@ export default function Header() {
     const albumName = useSelector((state: any) => state.auth.albumName);
     const albumID = useSelector((state: any) => state.auth.albumID);
     const uri = useSelector((state: any) => state.auth.uri);
+    const listUri = useSelector((state: any) => state.auth.listUri);
     const dispatch = useDispatch();
     const [display, setDisplay] = useState("none")
     const location = useLocation();
@@ -170,8 +171,8 @@ export default function Header() {
                                         className={style.icon}
                                         style={{display: display}}
                                         onClick={() => {
-                                            console.log(uri)
-                                            dispatch(getUri(uri))
+                                            console.log(listUri)
+                                            dispatch(getListUri(listUri))
                                         }}/>
                                     <div style={{display: display}} className={style.artistName}>{artistName}</div>
                                 </div>
@@ -184,8 +185,8 @@ export default function Header() {
                                 <div className={style.headerInfo}>
                                     <PlayCircleFilledWhiteIcon
                                         onClick={() => {
-                                            console.log(uri)
-                                            dispatch(getUri(uri))
+                                            console.log(listUri)
+                                            dispatch(getListUri(listUri))
                                         }}
                                         className={style.icon}
                                         style={{display: display}}/>
@@ -197,8 +198,8 @@ export default function Header() {
                                 <div className={style.headerInfo}>
                                     <PlayCircleFilledWhiteIcon
                                         onClick={() => {
-                                            console.log(uri)
-                                            dispatch(getUri(uri))
+                                            console.log(listUri)
+                                            dispatch(getListUri(listUri))
                                         }}
                                         className={style.icon}
                                         style={{display: display}}/>

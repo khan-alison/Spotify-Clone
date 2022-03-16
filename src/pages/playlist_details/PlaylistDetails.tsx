@@ -6,7 +6,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import {spotifyApi} from "../../spotify/api";
 import {
     getArtistID,
-    getArtistName,
+    getArtistName, getListUri,
     getPlaylistID,
     getPlaylistName,
     getUri,
@@ -57,14 +57,6 @@ export default function PlaylistDetails(props: IUserPlaylist) {
     }
 
 
-
-
-    const handleClick = (id: string, name: string) => {
-        dispatch(getArtistID(id))
-        dispatch(getArtistName(name))
-    }
-
-
     function msToTime(ms: any) {
         let seconds: any = (ms / 1000).toFixed(1);
         let minutes: any = (ms / (1000 * 60)).toFixed(1);
@@ -103,7 +95,7 @@ export default function PlaylistDetails(props: IUserPlaylist) {
         spotifyApi.getPlaylist(playListId.playlistID).then((playList: any) => {
             dispatch(getPlaylistName(playList?.body?.name))
             dispatch(getPlaylistID(playList?.body?.id))
-            dispatch(getUri(playList?.body?.uri))
+            dispatch(getListUri(playList?.body?.uri))
             spotifyApi.getRecommendations({
                 min_energy: 0.4,
                 seed_artists: [playList?.body?.tracks?.items[0]?.track?.artists[0]?.id, playList?.body?.tracks?.items[1]?.track?.artists[0]?.id],
@@ -164,7 +156,8 @@ export default function PlaylistDetails(props: IUserPlaylist) {
         );
 
     const playIconClickedHandle = () => {
-        dispatch(getUri(userPlaylistData.uri))
+        dispatch(getListUri(userPlaylistData.uri))
+        console.log(userPlaylistData.uri)
     }
 
     const refreshHandle = () => {
@@ -240,7 +233,7 @@ export default function PlaylistDetails(props: IUserPlaylist) {
 
                 <div style={
                     // @ts-ignore
-                    {position: `${position}`, top: '70px', zIndex: 1, backgroundColor: `${background}`}}
+                    {position: `${position}`, top: '70px', zIndex: 2, backgroundColor: `${background}`}}
                      className={style.artistInfo}>
                     <div className={style.infoTitleBar}>
                         <div className={style.number}>#</div>

@@ -7,11 +7,12 @@ import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import {getArtistID, getArtistName, getUri} from "../../redux/actions/actions";
+import {getArtistID, getArtistName, getListUri, getUri} from "../../redux/actions/actions";
 import {spotifyApi} from "../../spotify/api";
 import {Dropdown} from 'react-bootstrap';
 import AlbumItems from "../../components/items/album_items/AlbumItems";
 import ArtistItems from "../../components/items/artist_items/ArtistItems";
+import {log} from "util";
 
 const fac = new FastAverageColor();
 
@@ -24,6 +25,7 @@ function ArtistDetails(props: IArtistDetails) {
     const dispatch = useDispatch();
     const data = useSelector((state: any) => state.auth);
     const uri = useSelector((state: any) => state.auth.uri);
+    const listUri = useSelector((state: any) => state.auth.listUri);
     const [headerHeight, setHeaderHeight] = useState(0)
     const [artistData, setArtistData] = useState<any>("");
     const [relatedArtist,setRelatedArtist] = useState([])
@@ -77,7 +79,7 @@ function ArtistDetails(props: IArtistDetails) {
             setArtistData(artist);
             dispatch(getArtistID(artist.body.id))
             dispatch(getArtistName(artist.body.name))
-            dispatch(getUri(artist.body.uri))
+            dispatch(getListUri(artist.body.uri))
             setArtistThumb(artist?.body?.images[0]?.url)
         });
 
@@ -212,6 +214,12 @@ function ArtistDetails(props: IArtistDetails) {
             });
     }
 
+    const handlePlayClicked = (uri:string) => {
+        console.log(uri)
+        dispatch(getUri(uri))
+        console.log(data)
+    }
+
 
     return (
         <div className={style.container}>
@@ -232,9 +240,8 @@ function ArtistDetails(props: IArtistDetails) {
             <div className={style.body} style={{backgroundImage: `linear-gradient(${bgColor},#222221)`}}>
                 <div className={style.artistOptions}>
                     <PlayCircleFilledWhiteIcon className={style.icon} onClick={()=>{
-                       dispatch(getUri(uri))
-                        console.log(data)
-
+                       dispatch(getListUri(listUri))
+                        console.log(listUri)
                     }}/>
                     <div
                         onClick={handleUnfollowClick}
@@ -250,7 +257,7 @@ function ArtistDetails(props: IArtistDetails) {
                                     <div key={index} className={style.popularItem} onMouseEnter={()=>handleClick(track.id)}>
                                         <div className={style.popularContent}>
                                             <div className={style.number}>{index + 1}</div>
-                                            <PlayArrowIcon className={style.playIcon}/>
+                                            <PlayArrowIcon className={style.playIcon} onClick={()=>handlePlayClicked(track.uri)}/>
                                             <img className={style.image} src={track.album.images[0].url} alt=""/>
                                             <div className={style.name}>{track.name}</div>
                                         </div>

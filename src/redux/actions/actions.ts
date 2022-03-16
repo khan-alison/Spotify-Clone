@@ -97,6 +97,13 @@ export const getUri =  (payload: any)=>{
     }
 }
 
+export const getListUri =  (payload: any)=>{
+    return{
+        type: 'GET_LIST_URI',
+        payload,
+    }
+}
+
 export const getImageUrl =  (payload: any)=>{
     return{
         type: 'GET_IMAGE_URL',

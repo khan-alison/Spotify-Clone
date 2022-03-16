@@ -5,7 +5,7 @@ import style from "./TrackItemsLine.module.css"
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 
 import {useDispatch, useSelector} from "react-redux";
-import {getArtistID, getArtistName, getUri} from "../../../../redux/actions/actions";
+import {getArtistID, getArtistName, getListUri, getUri} from "../../../../redux/actions/actions";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import {spotifyApi} from "../../../../spotify/api";
@@ -63,18 +63,20 @@ export default function TrackItemsLine(props:ITrackItems){
                 console.log('Something went wrong!', err);
             });
     }
-    const handleArtistClick = (id:string,name:string)=>{
+    const handleArtistClick = (id:string,name:string,uri:string)=>{
         dispatch(getArtistID(id))
         dispatch(getArtistName(name))
+        dispatch(getListUri(uri))
     }
-
-    const handlePlayIconClick = (uri:any)=>{
-        dispatch(getUri(uri))
-        console.log(uri)
-        console.log(data)
-    }
+    //
+    // const handlePlayIconClick = (uri:any)=>{
+    //     dispatch(getUri(uri))
+    //     console.log(uri)
+    //     console.log(data)
+    // }
     const handlePlay = () => {
         dispatch(getUri(props.uri))
+        console.log(props.uri)
         console.log(data)
     }
 
@@ -121,7 +123,7 @@ export default function TrackItemsLine(props:ITrackItems){
                                 key={ind}
                                 to={`/artist/${item.id}`}
                                 className={style.artist}
-                                onClick={()=>handleArtistClick(item?.id,item?.name)}
+                                onClick={()=>handleArtistClick(item?.id,item?.name,item?.uri)}
                                 style={{textDecoration:"none",color:"#A7A7A7"}}
                             >
                                 {
@@ -175,9 +177,6 @@ export default function TrackItemsLine(props:ITrackItems){
                             <NavLink
                                 style={{textDecoration: "none", color: "white"}}
                                 to={`/album/${props.albumId}`}
-                                onClick={() => {
-                                    console.log("a");
-                                }}
                             >
                                 Go to album
                             </NavLink>

@@ -75,7 +75,7 @@
 .infoTitleBar {
     display: flex;
     border-bottom: 1px solid #333333;
-    padding: 0 40px;
+    padding: 0 50px;
     font-size: 12px;
     justify-content: center;
     align-items: center;
@@ -111,13 +111,15 @@
 }
 
 .durationIcon{
-    flex:5%
+    flex:5%;
+    display: flex;
+    justify-content: center;
 }
 
 .trackLine{
     display: flex;
     align-items: center;
-    padding: 0 10px;
+    padding: 0 20px;
     border-radius: 6px;
 }
 

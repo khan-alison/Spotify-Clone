@@ -14,6 +14,7 @@ const initialState={
     albumID:[],
     searchMessage:[],
     uri:null,
+    listUri:null,
     imageUrl:[],
 }
 
@@ -93,11 +94,19 @@ export const reducers = (state = initialState, action: any) => {
                 ...state,
                 searchMessage:action.payload
             }
+
         case 'GET_URI':
             return{
 
                 ...state,
                 uri: action.payload,
+            }
+
+        case 'GET_LIST_URI':
+            return{
+
+                ...state,
+                listUri: action.payload,
             }
         case 'GET_IMAGE_URL':
             return{

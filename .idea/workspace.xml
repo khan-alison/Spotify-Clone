@@ -5,21 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e8ed005e-e0a1-4b24-b12f-cc139200ac2a" name="Changes" comment="album detail">
-      <change afterPath="$PROJECT_DIR$/src/components/items/track_items/collections/CollectionsTrackItemsLine.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/items/track_items/collections/CollectionsTrackItemsLine.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/collection_tracks/CollectionTracks.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/collection_tracks/CollectionTracks.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header/Header.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/items/album_items/AlbumItems.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/items/album_items/AlbumItems.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/items/artist_items/ArtistItems.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/items/artist_items/ArtistItems.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/items/playlist_items/general/PlaylistGeneral.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/items/playlist_items/general/PlaylistGeneral.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/items/playlist_items/home/PlaylistItems.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/items/playlist_items/home/PlaylistItems.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/items/playlist_items/home/PlaylistItems.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/items/playlist_items/home/PlaylistItems.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/items/recommendation_items/Recommendation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/items/recommendation_items/Recommendation.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/items/track_items/collections/CollectionsTrackItemsLine.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/items/track_items/collections/CollectionsTrackItemsLine.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/items/track_items/collections/CollectionsTrackItemsLine.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/items/track_items/collections/CollectionsTrackItemsLine.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/items/track_items/grenes/TrackItemsGrenes.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/items/track_items/grenes/TrackItemsGrenes.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/items/track_items/grenes/TrackItemsGrenes.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/items/track_items/grenes/TrackItemsGrenes.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/items/track_items/line/TrackItemsLine.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/items/track_items/line/TrackItemsLine.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/items/track_items/line/TrackItemsLine.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/items/track_items/line/TrackItemsLine.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/albums_details/AlbumDetails.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/albums_details/AlbumDetails.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/albums_details/AlbumDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/albums_details/AlbumDetails.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/landing_page/LandingPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/landing_page/LandingPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/artist_details/ArtistDetails.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/artist_details/ArtistDetails.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/artist_details/ArtistDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/artist_details/ArtistDetails.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/playlist_details/PlaylistDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/playlist_details/PlaylistDetails.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/redux/actions/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/actions/actions.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/redux/reducers/reducers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducers/reducers.ts" afterDir="false" />
     </list>
@@ -81,7 +84,7 @@
       <option name="presentableId" value="Default" />
       <updated>1646969260593</updated>
       <workItem from="1646969263032" duration="27043000" />
-      <workItem from="1647303190200" duration="38674000" />
+      <workItem from="1647303190200" duration="43497000" />
     </task>
     <servers />
   </component>

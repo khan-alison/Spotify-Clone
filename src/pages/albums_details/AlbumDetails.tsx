@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from "react";
 import {NavLink, useParams} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {spotifyApi} from "../../spotify/api";
 // import style from "../playlist_details/PlaylistDetails.module.css";
 import style from "./AlbumDetails.module.css"
@@ -12,7 +12,7 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PlayCircleFilledWhiteIcon from "@mui/icons-material/PlayCircleFilledWhite";
 import {
     getAlbumID,
-    getAlbumName,
+    getAlbumName, getListUri,
     getUri
 } from "../../redux/actions/actions";
 
@@ -26,6 +26,7 @@ const fac = new FastAverageColor();
 export default function AlbumDetails(props: IAlbumDetails) {
     let albumId = useParams().albumID
     const dispatch = useDispatch();
+    const data = useSelector((state:any)=>state.auth)
     const [album, setAlbum] = useState<any>([])
     const [playlistThumb, setPlaylistThumb] = useState("")
     const [backgroundColor, getBackgroundColor] = useState<any>("");
@@ -54,7 +55,7 @@ export default function AlbumDetails(props: IAlbumDetails) {
             .then(function (data: any) {
                 dispatch(getAlbumName(data?.body?.name))
                 dispatch(getAlbumID(data?.body?.id))
-                dispatch(getUri(data?.body?.uri))
+                dispatch(getListUri(data?.body?.uri))
                 setAlbum(data?.body)
                 setPlaylistThumb(data?.body?.images[0]?.url)
                 setArtist(data.body.artists)
@@ -96,7 +97,8 @@ export default function AlbumDetails(props: IAlbumDetails) {
     })
 
     const playIconClickedHandle = () => {
-        dispatch(getUri(album.uri))
+        console.log(album.uri)
+        dispatch(getListUri(album.uri))
     }
     const timers = album?.tracks?.items
         && album?.tracks?.items.length > 0
@@ -112,8 +114,10 @@ export default function AlbumDetails(props: IAlbumDetails) {
                     return previousValue + currentValue;
                 }
             );
-    const handlePlay = () => {
-        dispatch(getUri(album.uri))
+    const handlePlay = (uri:string) => {
+        console.log(uri)
+        dispatch(getUri(uri))
+        console.log(data)
     }
     return (
         <div className={style.container}>
@@ -153,7 +157,7 @@ export default function AlbumDetails(props: IAlbumDetails) {
                 </div>
                 <div style={
                     // @ts-ignore
-                    {position: `${position}`, top: '70px', zIndex: 1, backgroundColor: `${background}`}}
+                    {position: `${position}`, top: '70px', zIndex: 2, backgroundColor: `${background}`}}
                      className={style.artistInfo}
                 >
                     <div className={style.infoTitleBar}>
@@ -171,7 +175,7 @@ export default function AlbumDetails(props: IAlbumDetails) {
                         album?.tracks?.items.map((item: any, index: number) => {
                             return (
                                 <div className={style.trackLine}>
-                                    <PlayArrowIcon className={style.playIcon} onClick={handlePlay}/>
+                                    <PlayArrowIcon className={style.playIcon} onClick={()=>handlePlay(item.uri)}/>
                                     <div className={style.number}>{index + 1}</div>
                                     <div className={style.title}>
                                         <div>{item.name}</div>

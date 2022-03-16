@@ -4,7 +4,7 @@ import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite
 import style from "./PlaylistItems.module.css"
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {getImageUrl, getPlaylistID, getPlaylistName, getUri} from "../../../../redux/actions/actions";
+import {getImageUrl, getListUri, getPlaylistID, getPlaylistName, getUri} from "../../../../redux/actions/actions";
 import {logDOM} from "@testing-library/react";
 
 interface IPlaylistItems {
@@ -18,19 +18,15 @@ export default function PlaylistItems(props: IPlaylistItems) {
     const dispatch = useDispatch()
     const data = useSelector((state: any) => state.auth)
     const handlePlayIconClick = () => {
-        dispatch(getUri(props?.playlistUri))
+        dispatch(getListUri(props?.playlistUri))
         console.log(data)
     }
     //
     const getInfoHandle=(url:string,name:string,id:string,uri:string) => {
-        // dispatch(getImageUrl(props.imageUrl))
-        // dispatch(getPlaylistName(props?.playlistName))
-        // dispatch(getPlaylistID(props?.playlistId))
-        // dispatch(getUri(props?.playlistUri))
         dispatch(getImageUrl(url))
         dispatch(getPlaylistName(name))
         dispatch(getPlaylistID(id))
-        dispatch(getUri(uri))
+        dispatch(getListUri(uri))
     }
 
     return (

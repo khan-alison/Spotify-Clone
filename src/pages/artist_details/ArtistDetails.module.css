@@ -64,8 +64,20 @@
 
 .number{
     display: flex;
-    width: 22.4px;
     justify-content: center;
+    padding-right: 14px;
+}
+
+
+.image{
+    height: 40px;
+    width: auto;
+}
+.name{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-self: center;
 }
 
 .playIcon{
@@ -106,7 +118,6 @@
 }
 
 .popularItem{
-    border: 1px solid transparent;
     border-radius: 4px;
     display: flex;
     align-items: center;
@@ -177,21 +188,12 @@
 }
 
 
-.image{
-    height: 40px;
-    width: auto;
-}
 
 .userInfo:focus {
     box-shadow: none !important;
 }
 
-.name{
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    align-self: center;
-}
+
 
 .duration_ms{
     width: 60px;

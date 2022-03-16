@@ -7,7 +7,7 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import {useDispatch, useSelector} from "react-redux";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import {getArtistID, getArtistName, getUri} from "../../../redux/actions/actions";
+import {getArtistID, getArtistName, getListUri, getUri} from "../../../redux/actions/actions";
 import {spotifyApi} from "../../../spotify/api";
 // import {spotifyApi} from "../../../../spotify/api";
 
@@ -32,9 +32,10 @@ export default function Recommendation(props:ITrackItems){
     const [isFar, setFar] = useState(false);
     const [display,setDisplay] = useState('')
 
-    const handleArtistClick = (id:string,name:string)=>{
+    const handleArtistClick = (id:string,name:string,uri:string)=>{
         dispatch(getArtistID(id))
         dispatch(getArtistName(name))
+        dispatch(getListUri(uri))
     }
 
 
@@ -68,7 +69,7 @@ export default function Recommendation(props:ITrackItems){
                                 key={ind}
                                 to={`/artist/${item.id}`}
                                 className={style.artist}
-                                onClick={()=>handleArtistClick(item?.id,item?.name)}
+                                onClick={()=>handleArtistClick(item?.id,item?.name,item?.uri)}
                                 style={{textDecoration:"none",color:"#A7A7A7"}}
                             >
                                 {

@@ -4,7 +4,7 @@ import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite
 import style from "./ArtistItems.module.css"
 import HeartBrokenIcon from '@mui/icons-material/HeartBroken';
 import {spotifyApi} from "../../../spotify/api";
-import {getArtistID, getArtistName, getUri} from "../../../redux/actions/actions";
+import {getArtistID, getArtistName, getListUri, getUri} from "../../../redux/actions/actions";
 import {useDispatch} from "react-redux";
 
 interface ITrackItems {
@@ -42,11 +42,12 @@ export default function ArtistItems(props:ITrackItems){
     const handleClick = (id:string,name:string,uri:string)=>{
         dispatch(getArtistID(id))
         dispatch(getArtistName(name))
-        dispatch(getUri(uri))
+        dispatch(getListUri(uri))
     }
 
-    const handlePlayIconClick = ()=>{
-        console.log("a")
+    const handlePlayIconClick = (uri:string)=>{
+        console.log(uri)
+        dispatch(getListUri(uri))
     }
 
     return(
@@ -68,7 +69,7 @@ export default function ArtistItems(props:ITrackItems){
                 onClick={handleUnfollowClick}
             />
             <PlayCircleFilledWhiteIcon
-                onClick={handlePlayIconClick}
+                onClick={()=>handlePlayIconClick(props.uri)}
                 className={style.icon}/>
         </div>
     )

@@ -3,7 +3,7 @@ import {NavLink} from "react-router-dom";
 import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite';
 import style from "./TrackItemsGrenes.module.css"
 import {useDispatch, useSelector} from "react-redux";
-import {getArtistID, getArtistName, getUri} from "../../../../redux/actions/actions";
+import {getArtistID, getArtistName, getListUri, getUri} from "../../../../redux/actions/actions";
 
 interface ITrackItems {
     imgUrl: string;
@@ -19,15 +19,16 @@ export default function TrackItemsGrenes(props:ITrackItems){
     const dispatch = useDispatch();
     const data = useSelector((state:any)=>state.auth)
 
-    const handleClick = (id:string,name:string)=>{
+    const handleClick = (id:string,name:string,uri:string)=>{
         dispatch(getArtistID(id))
         dispatch(getArtistName(name))
+        dispatch(getListUri(uri))
     }
 
     const handlePlayIconClick = (uri:any)=>{
         dispatch(getUri(uri))
         console.log(uri)
-        console.log(data)
+        // console.log(data)
     }
     return(
         <div className={style.container}>
@@ -39,7 +40,7 @@ export default function TrackItemsGrenes(props:ITrackItems){
                         key={index}
                         to={`/artist/${item.id}`}
                         className={style.artist}
-                        onClick={()=>handleClick(item?.id,item?.name)}
+                        onClick={()=>handleClick(item?.id,item?.name,item?.uri)}
                         style={{textDecoration:"none",color:"#A7A7A7"}}
                     >
                         {
