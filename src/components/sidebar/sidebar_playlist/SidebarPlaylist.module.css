@@ -6,7 +6,8 @@
 }
 
 .SideBarPlaylist:hover{
-    color:white
+    color:white;
+
 }
 
 .container:hover .icon{
@@ -17,6 +18,9 @@
     color:grey;
     padding: 6px 0;
     transition:  color 0.3s ease-in;
+    width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .icon{

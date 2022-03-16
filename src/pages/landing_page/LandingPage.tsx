@@ -15,6 +15,8 @@ import LibraryPodcasts from "../../components/body/library/library_podcasts/Libr
 import LibraryArtists from "../../components/body/library/library_artists/LibraryArtists";
 import LibraryAlbums from "../../components/body/library/library_albums/LibraryAlbums";
 import ArtistDetails from "../artist_details/ArtistDetails";
+import AlbumItems from "../../components/items/album_items/AlbumItems";
+import AlbumDetails from "../albums_details/AlbumDetails";
 
 interface ILandingPage {
     accessToken: any,
@@ -52,6 +54,7 @@ export default function LandingPage({accessToken, spotify}: ILandingPage) {
                             </Route>
                             <Route path="/playlist/:playlistID" element={<PlaylistDetails spotify={spotify}/>}/>
                             <Route path="/artist/:artistID" element={<ArtistDetails spotify={spotify}/>}/>
+                            <Route path="/album/:albumID" element={<AlbumDetails spotify={spotify}/>}/>
                         </Routes>
 
                     </div>

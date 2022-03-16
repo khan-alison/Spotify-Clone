@@ -19,7 +19,7 @@ export default function AlbumItems(props:ITrackItems){
 
     return(
         <div className={style.container}>
-            <NavLink to="/" style={{textDecoration:"none",color:"white"}} >
+            <NavLink to={`/album/${props.id}`} style={{textDecoration:"none",color:"white"}} >
                 <img className={style.img} src={props?.imgUrl} alt=""/>
 
                 <h5 className={style.name}>{props?.name}</h5>

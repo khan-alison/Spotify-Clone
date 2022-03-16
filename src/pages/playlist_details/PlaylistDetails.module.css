@@ -49,8 +49,8 @@
 
 .headerName {
     font-weight: 750;
-    font-size: 100px;
-    line-height: 120px;
+    font-size: 70px;
+    line-height: 90px;
     text-shadow: 1px 1px 2px black;
 }
 
@@ -302,7 +302,8 @@
 @media screen and (max-width: 1068px) {
     .headerName {
         font-weight: bold;
-        font-size: 70px;
+        font-size: 50px;
+        line-height: 70px;
         text-shadow: 1px 1px 2px black;
     }
 
@@ -321,6 +322,7 @@
     .headerName {
         font-weight: bold;
         font-size: 56px;
+        line-height: 70px;
         text-shadow: 1px 1px 2px black;
     }
 }
@@ -328,7 +330,9 @@
 @media screen and (max-width: 770px) {
     .headerName {
         font-weight: bold;
-        font-size: 50px;
+        font-size: 40px;
+        line-height: 60px;
+
         text-shadow: 1px 1px 2px black;
     }
 }

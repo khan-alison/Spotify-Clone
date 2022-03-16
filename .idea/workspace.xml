@@ -5,23 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e8ed005e-e0a1-4b24-b12f-cc139200ac2a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/pop_up/delete_cf/PopUpDel.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/pop_up/delete_cf/PopUpDel.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/pop_up/edit_playlist/PopUp.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/pop_up/edit_playlist/PopUp.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/albums_details/AlbumDetails.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/albums_details/AlbumDetails.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/body/library/library_playlist/LibraryPlaylist.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/body/library/library_playlist/LibraryPlaylist.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/items/recommendation_items/Recommendation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/items/recommendation_items/Recommendation.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/items/album_items/AlbumItems.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/items/album_items/AlbumItems.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/items/playlist_items/general/PlaylistGeneral.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/items/playlist_items/general/PlaylistGeneral.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/items/playlist_items/home/PlaylistItems.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/items/playlist_items/home/PlaylistItems.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/items/recommendation_items/Recommendation.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/items/recommendation_items/Recommendation.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/items/track_items/line/TrackItemsLine.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/items/track_items/line/TrackItemsLine.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/sidebar/SideBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sidebar/SideBar.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/sidebar/sidebar_playlist/SidebarPlaylist.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sidebar/sidebar_playlist/SidebarPlaylist.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/sidebar/sidebar_playlist/SidebarPlaylist.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sidebar/sidebar_playlist/SidebarPlaylist.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/artist_details/ArtistDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/artist_details/ArtistDetails.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/landing_page/LandingPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/landing_page/LandingPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/playlist_details/PlaylistDetails.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/playlist_details/PlaylistDetails.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/playlist_details/PlaylistDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/playlist_details/PlaylistDetails.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/spotify/api.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/spotify/api.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +29,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
         <option value="CSS File" />
       </list>
     </option>
@@ -80,7 +78,7 @@
       <option name="presentableId" value="Default" />
       <updated>1646969260593</updated>
       <workItem from="1646969263032" duration="27043000" />
-      <workItem from="1647303190200" duration="19995000" />
+      <workItem from="1647303190200" duration="29552000" />
     </task>
     <servers />
   </component>

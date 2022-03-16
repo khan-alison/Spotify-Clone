@@ -164,27 +164,22 @@ export default function PlaylistDetails(props: IUserPlaylist) {
         );
 
     const playIconClickedHandle = () => {
-        console.log(data)
         dispatch(getUri(userPlaylistData.uri))
     }
 
     const refreshHandle = () => {
         setRefresh(!refresh)
-        console.log(refresh)
     }
 
     const findMoreHandle = () => {
         setFindMore(!findMore)
-        console.log(findMore)
     }
 
     const callbackFunction = (childData: any) => {
-        console.log(childData)
         setPlaylistLength(childData)
     }
 
     const callbackDelete = (childData:any) => {
-        console.log(childData)
         setPlaylistLength(childData)
     }
 

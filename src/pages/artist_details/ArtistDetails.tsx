@@ -75,7 +75,6 @@ function ArtistDetails(props: IArtistDetails) {
 
         spotifyApi.getArtist(artistId).then((artist: any) => {
             setArtistData(artist);
-            console.log(artist.body)
             dispatch(getArtistID(artist.body.id))
             dispatch(getArtistName(artist.body.name))
             dispatch(getUri(artist.body.uri))

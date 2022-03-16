@@ -145,6 +145,10 @@
 
 .artist{
     font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 50%;
 }
 
 .artist:hover{

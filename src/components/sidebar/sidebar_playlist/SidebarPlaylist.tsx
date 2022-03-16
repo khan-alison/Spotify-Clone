@@ -32,8 +32,7 @@ export default function SidebarPlaylist(props:ISidebarPlaylist){
                      style={{ textDecoration: "none" }} to={`/playlist/${props.id}`}>
                 <div className={style.SideBarPlaylist}>
                     <PopUpDel open={isOpen} playlistId={props.id} onClose={handleClose} index={props.index} currName={props.name}/>
-                    <div>{props.name}</div>
-
+                    <div style={{textOverflow:'ellipsis',overflow:'hidden'}}>{props.name}</div>
                 </div>
             </NavLink>
             <div>

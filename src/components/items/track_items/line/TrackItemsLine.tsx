@@ -94,9 +94,9 @@ export default function TrackItemsLine(props:ITrackItems){
             });
     }
 
-    const handleDeleteTrack = (uri:any) => {
+    const handleDeleteTrack = (uri:any,pID:any) => {
         var tracks = [{ uri : `${uri}` }];
-        var playlistId = '7CHg1unmrhCQZWcibgKOog';
+        var playlistId = pID.playlistID;
         spotifyApi.removeTracksFromPlaylist(playlistId, tracks)
             .then(function(data:any) {
             }, function(err:any) {
@@ -197,7 +197,7 @@ export default function TrackItemsLine(props:ITrackItems){
                             <div
                                 style={{ textDecoration: "none", color: "white" }}
 
-                                onClick={()=>handleDeleteTrack(props.uri)}
+                                onClick={()=>handleDeleteTrack(props.uri,props.playlistId)}
                             >
                                 Delete This Song
                             </div>

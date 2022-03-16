@@ -36,7 +36,7 @@ export default function PlaylistGeneral(props:ITrackItems){
                          getInfoHandle(props.imageUrl,props?.playlistName,props?.playlistId,props?.playlistUri)
                      }}
             >
-                <img className={style.img} src={props?.imageUrl} alt=""/>
+                <img className={style.img} src={props?.imageUrl || 'https://community.spotify.com/t5/image/serverpage/image-id/25294i2836BD1C1A31BDF2?v=v2'} alt=""/>
 
                 <h5 className={style.name}>{props?.playlistName}</h5>
                 <p className={style.description}>By {props?.description}</p>
