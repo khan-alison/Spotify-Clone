@@ -104,7 +104,7 @@ export default function CollectionTracks(props:ICollectionTracks){
                         className={style.headerName}
                     >Favorite</div>
                     <div className={style.headerInfo}>
-                        <p style={{fontWeight: 'bold'}}>{data.user.display_name} &bull;{` ${length} ${length === 1 ? "song" : "songs"}`}</p>
+                        <p style={{fontWeight: 'bold'}}>{data?.user?.display_name} &bull;{` ${length} ${length === 1 ? "song" : "songs"}`}</p>
                     </div>
                 </div>
             </div>
@@ -134,16 +134,16 @@ export default function CollectionTracks(props:ICollectionTracks){
                             return (
                                 <CollectionsTrackItemsLine
                                     key={index}
-                                    imgUrl={item.track.album.images[0].url}
-                                    title={item.track.name}
-                                    album={item.track.album.name}
-                                    id={item.track.id}
+                                    imgUrl={item?.track?.album?.images[0].url}
+                                    title={item?.track?.name}
+                                    album={item?.track?.album?.name}
+                                    id={item?.track?.id}
                                     index={index}
-                                    albumId={item.track.album.id}
+                                    albumId={item?.track?.album?.id}
                                     artists={item?.track?.artists}
-                                    date_added={formatDate(item.added_at)}
-                                    ms_duration={msToTime(item.track.duration_ms)}
-                                    uri={item.track.uri}
+                                    date_added={formatDate(item?.added_at)}
+                                    ms_duration={msToTime(item?.track?.duration_ms)}
+                                    uri={item?.track?.uri}
                                     playlistLength={length}
                                     parentCallback={callbackDelete}
                                 />

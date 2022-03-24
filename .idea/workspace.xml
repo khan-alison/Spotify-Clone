@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e8ed005e-e0a1-4b24-b12f-cc139200ac2a" name="Changes" comment="album detail">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/collection_tracks/CollectionTracks.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/collection_tracks/CollectionTracks.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +68,8 @@
       <workItem from="1646969263032" duration="27043000" />
       <workItem from="1647303190200" duration="45147000" />
       <workItem from="1647592826087" duration="21000" />
+      <workItem from="1647677809574" duration="854000" />
+      <workItem from="1648134562022" duration="1244000" />
     </task>
     <servers />
   </component>
