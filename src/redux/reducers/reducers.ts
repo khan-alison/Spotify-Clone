@@ -31,12 +31,6 @@ export const reducers = (state = initialState, action: any) => {
                 usePlaylist: action.payload,
             }
 
-        case 'GET_USER_PLAYLIST':
-            return{
-                ...state,
-                playlist: action.payload,
-            }
-
         case 'GET_RECENTLY_PLAYED_TRACK':
             return{
                 ...state,

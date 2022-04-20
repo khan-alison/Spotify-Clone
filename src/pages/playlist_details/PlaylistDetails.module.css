@@ -158,20 +158,20 @@
 /*}*/
 
 .dateAdded {
-    flex: 22%;
+    flex: 20%;
     display: flex;
     justify-content: center;
 }
 
 .trackAdded {
-    flex: 22%;
+    flex: 20%;
     display: flex;
     justify-content: center;
 }
 
 
 .durationIcon {
-    flex: 8%;
+    flex: 10%;
     display: flex;
     justify-content: center;
 }

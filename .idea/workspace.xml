@@ -6,7 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="e8ed005e-e0a1-4b24-b12f-cc139200ac2a" name="Changes" comment="album detail">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/collection_tracks/CollectionTracks.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/collection_tracks/CollectionTracks.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/items/track_items/line/TrackItemsLine.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/items/track_items/line/TrackItemsLine.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/artist_details/ArtistDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/artist_details/ArtistDetails.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/playlist_details/PlaylistDetails.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/playlist_details/PlaylistDetails.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/playlist_details/PlaylistDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/playlist_details/PlaylistDetails.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +41,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/items/track_items/collections" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -69,7 +72,11 @@
       <workItem from="1647303190200" duration="45147000" />
       <workItem from="1647592826087" duration="21000" />
       <workItem from="1647677809574" duration="854000" />
-      <workItem from="1648134562022" duration="1244000" />
+      <workItem from="1648134562022" duration="1965000" />
+      <workItem from="1648425078120" duration="5767000" />
+      <workItem from="1648563529680" duration="662000" />
+      <workItem from="1648686193782" duration="122000" />
+      <workItem from="1648732617009" duration="604000" />
     </task>
     <servers />
   </component>
